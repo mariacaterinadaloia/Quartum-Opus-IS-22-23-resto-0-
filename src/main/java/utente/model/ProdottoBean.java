@@ -1,0 +1,71 @@
+package utente.model;
+
+import generic.Bean;
+
+public class ProdottoBean implements Bean {
+    private long ISBN;
+    private String nome;
+    private String genere;
+    private int anno;
+    private int edizione;
+    private String copertina;
+    private String casa_editrice;
+
+    public String getCasa_editrice() {
+        return casa_editrice;
+    }
+
+    public void setCasa_editrice(String casa_editrice) {
+        this.casa_editrice = casa_editrice;
+    }
+
+    public ProdottoBean(){};
+
+    public String getCopertina() {
+        return copertina;
+    }
+
+    public void setCopertina(String copertina) {
+        this.copertina = copertina;
+    }
+
+    public int getEdizione() {
+        return edizione;
+    }
+
+    public void setEdizione(int edizione) {
+        this.edizione = edizione;
+    }
+
+    public int getAnno() {
+        return anno;
+    }
+
+    public void setAnno(int anno) {
+        this.anno = anno;
+    }
+
+    public String getGenere() {
+        return genere;
+    }
+
+    public void setGenere(String genere) {
+        this.genere = genere;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public long getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(long ISBN) {
+        this.ISBN = ISBN;
+    }
+}
