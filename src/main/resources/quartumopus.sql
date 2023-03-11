@@ -41,12 +41,6 @@ create table prodotto(
     primary key(ISBN)
 ); 
 
-create table effettuato_da(
-	ordine int not null, 
-    utente varchar(256) not null, 
-    foreign key(utente) references utente(mail), 
-    foreign key(ordine) references ordine(id)
-);
 
 create table scritto_da(
 	prodotto bigint not null, 

@@ -144,7 +144,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set ISBN=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        prodottoBean.setISBN(ISBN);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -166,7 +166,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set nome=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        prodottoBean.setNome(nome);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -187,6 +187,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set genere=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
+        prodottoBean.setGenere(genere);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -207,7 +208,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set anno=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        prodottoBean.setAnno(anno);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -228,7 +229,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set edizione=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        prodottoBean.setEdizione(edizione);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -249,6 +250,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set casa_editrice=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
+        prodottoBean.setCasa_editrice(casaEditrice);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -270,6 +272,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set copertina=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
+        prodottoBean.setCopertina(copertina);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
