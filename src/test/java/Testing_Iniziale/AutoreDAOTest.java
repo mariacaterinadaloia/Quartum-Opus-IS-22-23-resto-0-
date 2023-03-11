@@ -30,7 +30,7 @@ public class AutoreDAOTest {
 
     @Test
     void testRetrieveAll() throws Exception {
-        Assertions.assertTrue((ad.doRetrieveAll().isEmpty()));
+        Assertions.assertTrue(!(ad.doRetrieveAll().isEmpty()));
     }
 
     @Test

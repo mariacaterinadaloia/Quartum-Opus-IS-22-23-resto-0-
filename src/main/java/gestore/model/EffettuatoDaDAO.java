@@ -46,7 +46,7 @@ public class EffettuatoDaDAO implements DAO<EffettuatoDaBean> {
 
     @Override
     public EffettuatoDaBean doRetrieveByKey(Object key) throws SQLException {
-        String email= (String) key;
+        Integer ordine= (Integer) key;
         Connection con=null;
         PreparedStatement ps=null;
         String query= "select * from "+EffettuatoDaDAO.TABLE_NAME+"where ordine = ?";
@@ -56,7 +56,7 @@ public class EffettuatoDaDAO implements DAO<EffettuatoDaBean> {
             con= DriverManagerConnectionPool.getConnection();
 
             ps=con.prepareStatement(query);
-            ps.setString(1, email);
+            ps.setInt(1, ordine);
             ResultSet rs= ps.executeQuery();
 
             while(rs.next()) {
@@ -154,39 +154,6 @@ public class EffettuatoDaDAO implements DAO<EffettuatoDaBean> {
 
         }
         return aoe;
-    }
-
-    public  ArrayList<EffettuatoDaBean> doRetrieveByUser(String user) throws SQLException {
-        Connection con=null;
-        PreparedStatement ps=null;
-        String query= "select * from "+ EffettuatoDaDAO.TABLE_NAME+"where utente=?";
-        ArrayList<EffettuatoDaBean> ab = new ArrayList<EffettuatoDaBean>();
-
-
-        try {
-            con = DriverManagerConnectionPool.getConnection();
-
-            ps = con.prepareStatement(query);
-            ps.setString(1,user);
-            ResultSet rs = ps.executeQuery();
-
-
-            while (rs.next()) {
-                EffettuatoDaBean b=new EffettuatoDaBean();
-                b.setOrdine(rs.getInt("ordine"));
-                b.setUtente(rs.getString("utente"));
-                ab.add(b);
-            }
-            rs.close();
-        }finally {
-            try {
-                if(ps!=null) ps.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(con);
-            }
-
-        }
-        return ab;
     }
 
 }
