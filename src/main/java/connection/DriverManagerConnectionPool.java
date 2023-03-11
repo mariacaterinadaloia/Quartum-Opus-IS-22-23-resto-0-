@@ -21,9 +21,11 @@ public class DriverManagerConnectionPool {
         private static Connection createDbConnection() throws SQLException {
             Connection newConnection = null;
             String db = "quartumopus";
+            String ip = "localhost";
+            String port = "3306";
             String username = "root";
-            String password = "SperiamoPassoBD22!";
-            newConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db,username,password);
+            String password = "QuartumOpus";
+            newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true", username, password);
             System.out.println("Create new DB connection");
             newConnection.setAutoCommit(true);
             return newConnection;

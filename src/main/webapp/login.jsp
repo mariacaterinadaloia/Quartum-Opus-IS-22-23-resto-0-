@@ -1,4 +1,4 @@
-<%--
+<%@ page import="utente.model.UtenteBean" %><%--
   Created by IntelliJ IDEA.
   User: Francesca
   Date: 07/01/2023
@@ -6,6 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    UtenteBean user = (UtenteBean) request.getSession().getAttribute("user");
+    if(user != null){
+        response.sendRedirect(request.getContextPath() + "index.jsp");
+        return;
+    }
+    Boolean error = (Boolean) request.getAttribute("error");
+    if(error == null){
+        error = false;
+    }
+%>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -31,11 +42,13 @@
                      class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
-
+                <form action="<%=response.encodeRedirectURL("LoginController")%>" method="post" name="LoginForm">
+                    <%if(error==true){%>
+                    <p id = "errorMessage" style="color:red;">Email e/o password errate, ritenta.</p>
+                    <%}%>
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="form3Example3" name="mail" class="form-control form-control-lg"
+                        <input type="email" id="form3Example3" name="email" class="form-control form-control-lg"
                                placeholder="es.mariorossi@gmail.com" />
                         <label class="form-label" for="form3Example3">Indirizzo email</label>
                     </div>
@@ -48,7 +61,7 @@
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button" class="btn btn-primary btn-lg"
+                        <button type="submit" class="btn btn-primary btn-lg"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                         <p class="small fw-bold mt-2 pt-1 mb-0">Non hai un account? <a href="#!"
                                                                                           class="link-danger">Registrati</a></p>

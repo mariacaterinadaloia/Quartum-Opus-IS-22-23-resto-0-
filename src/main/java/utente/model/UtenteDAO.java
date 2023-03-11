@@ -54,7 +54,7 @@ public class UtenteDAO implements DAO<UtenteBean> {
             String email= (String) key;
             Connection con=null;
             PreparedStatement ps=null;
-            String query= "select * from "+UtenteDAO.TABLE_NAME+"where mail=?";
+            String query= "select * from "+UtenteDAO.TABLE_NAME+" where mail=?";
             UtenteBean b=new UtenteBean();
 
             try {
@@ -87,7 +87,7 @@ public class UtenteDAO implements DAO<UtenteBean> {
         @Override
         public void doDeleteByKey(Object key) throws SQLException{
             String email= (String) key;
-            String query="delete from"+UtenteDAO.TABLE_NAME+"where mail=?";
+            String query="delete from"+UtenteDAO.TABLE_NAME+" where mail=?";
             Connection con=null;
             PreparedStatement ps=null;
 
