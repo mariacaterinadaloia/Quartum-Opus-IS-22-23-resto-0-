@@ -136,7 +136,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
         String query="update "+ AutoreDAO.TABLE_NAME+" set nome=? where codice=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        autoreBean.setNome(nome);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -157,7 +157,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
         String query="update "+ AutoreDAO.TABLE_NAME+" set cognome=? where codice=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        autoreBean.setCognome(cognome);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -178,7 +178,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
         String query="update "+ AutoreDAO.TABLE_NAME+" set codice=? where codice=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        autoreBean.setCodice(codice);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -199,7 +199,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
         String query="update "+ AutoreDAO.TABLE_NAME+" set date=? where codice=?";
         Connection con=null;
         PreparedStatement ps=null;
-
+        autoreBean.setDatanascita(date);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
