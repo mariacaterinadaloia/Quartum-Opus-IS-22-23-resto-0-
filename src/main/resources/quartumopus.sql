@@ -38,6 +38,7 @@ create table prodotto(
     edizione int not null, 
     casa_editrice varchar(128) not null, 
     copertina varchar(512),
+    acquistabile bool not null,
     primary key(ISBN)
 ); 
 
