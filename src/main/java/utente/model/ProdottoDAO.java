@@ -313,7 +313,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
     public ArrayList<ProdottoBean> doRetrieveByGenre(String genre) throws SQLException {
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "select * from "+ ProdottoDAO.TABLE_NAME+"where genere = ";
+        String query= "select * from "+ ProdottoDAO.TABLE_NAME+" where genere = ";
         ArrayList<ProdottoBean> ab = new ArrayList<ProdottoBean>();
 
 
@@ -334,6 +334,8 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
                 b.setCasa_editrice(rs.getString("casa_editrice"));
+                b.setAcquistabile(rs.getBoolean("acquistabile"));
+                b.setPrezzo(rs.getDouble("prezzo"));
                 ab.add(b);
             }
             rs.close();
@@ -351,7 +353,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
     public ProdottoBean doRetrieveByNome(String nome) throws SQLException {
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "select * from "+ProdottoDAO.TABLE_NAME+"where nome=?";
+        String query= "select * from "+ProdottoDAO.TABLE_NAME+" where nome=?";
         ProdottoBean b=new ProdottoBean();
 
         try {
@@ -369,6 +371,8 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
                 b.setCasa_editrice(rs.getString("casa_editrice"));
+                b.setAcquistabile(rs.getBoolean("acquistabile"));
+                b.setPrezzo(rs.getDouble("prezzo"));
             }
             rs.close();
         }finally {

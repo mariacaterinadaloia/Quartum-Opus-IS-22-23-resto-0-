@@ -52,7 +52,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
         String codice= (String) key;
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "select * from "+ AutoreDAO.TABLE_NAME+"where codice=?";
+        String query= "select * from "+ AutoreDAO.TABLE_NAME+" where codice=?";
         AutoreBean b=new AutoreBean();
 
         try {
@@ -83,7 +83,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
     @Override
     public void doDeleteByKey(Object key) throws SQLException {
         String codice= (String) key;
-        String query="delete from"+AutoreDAO.TABLE_NAME+"where codice=?";
+        String query="delete from "+AutoreDAO.TABLE_NAME+" where codice=?";
         Connection con=null;
         PreparedStatement ps=null;
 

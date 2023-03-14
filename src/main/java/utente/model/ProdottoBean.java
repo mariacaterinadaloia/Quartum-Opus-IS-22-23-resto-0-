@@ -11,6 +11,15 @@ public class ProdottoBean implements Bean {
     private String copertina;
     private String casa_editrice;
     private double prezzo;
+    private boolean acquistabile;
+
+    public boolean isAcquistabile() {
+        return acquistabile;
+    }
+
+    public void setAcquistabile(boolean acquistabile) {
+        this.acquistabile = acquistabile;
+    }
 
     public double getPrezzo() {
         return prezzo;
