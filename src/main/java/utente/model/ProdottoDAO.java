@@ -289,6 +289,27 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         }
     }
 
+    public void doModifyPrezzo(ProdottoBean prodottoBean, double prezzo) throws SQLException{
+        String query="update "+ ProdottoDAO.TABLE_NAME+" set prezzo=? where ISBN=?";
+        Connection con=null;
+        PreparedStatement ps=null;
+        prodottoBean.setPrezzo(prezzo);
+        try {
+            con= DriverManagerConnectionPool.getConnection();
+
+            ps=con.prepareStatement(query);
+            ps.setLong(2, prodottoBean.getISBN());
+            ps.setDouble(1, prezzo);
+            ps.execute();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            }finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
+    }
+
     public ArrayList<ProdottoBean> doRetrieveByGenre(String genre) throws SQLException {
         Connection con=null;
         PreparedStatement ps=null;

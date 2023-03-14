@@ -10,6 +10,15 @@ public class ProdottoBean implements Bean {
     private int edizione;
     private String copertina;
     private String casa_editrice;
+    private double prezzo;
+
+    public double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
+    }
 
     public String getCasa_editrice() {
         return casa_editrice;
