@@ -52,20 +52,11 @@ create table prodotto(
     primary key(ISBN)
 ); */
 
-insert into prodotto values (093764321, 'I tuoi occhi mi parlano...',  'romanzo', 2020, 3, 'Einadi', 'StringCopertina'); 
-insert into prodotto values (98483645, '.., e mi dicono...', 'thriller', 2008, 4, 'Feltrinelli', 'String'); 
-insert into prodotto values (2844872, '...hai paura di IS', 'giallo', 2011, 1,  'Mondadori', 'strgg'); 
+insert into prodotto values (93764321, 'I tuoi occhi mi parlano...',  'romanzo', 2020, 3, 'Einadi', 'StringCopertina', true);
+insert into prodotto values (98483645, '.., e mi dicono...', 'thriller', 2008, 4, 'Feltrinelli', 'String',true);
+insert into prodotto values (2844872, '...hai paura di IS', 'giallo', 2011, 1,  'Mondadori', 'strgg', false);
 /*
-create table effettuato_da(
-	ordine int not null, 
-    utente varchar(256) not null, 
-    foreign key(utente) references utente(mail), 
-    foreign key(ordine) references ordine(id)
-);*/
-insert into effettuato_da values (1, 'ludssss@gmail.com'); 
-insert into effettuato_da values (2, 'manuilmagnifico@hotmail.com'); 
-insert into effettuato_da values (3, 'ludssss@gmail.com'); 
-/*
+
 create table scritto_da(
 	prodotto bigint not null, 
     autore varchar(16) not null, 
@@ -74,7 +65,7 @@ create table scritto_da(
 );
 */
 
-insert into scritto_da values (093764321, '934723'); 
+insert into scritto_da values (93764321, '934723');
 insert into scritto_da values (98483645, '956723'); 
 insert into scritto_da values (2844872, '934423');
 
@@ -86,7 +77,7 @@ create table contiene(
 	foreign key(prodotto) references prodotto(ISBN)
 );*/
 
-insert into contiene values (1,093764321); 
+insert into contiene values (1,93764321);
 insert into contiene values (1, 98483645); 
 insert into contiene values (2, 98483645); 
 insert into contiene values (3, 98483645); 

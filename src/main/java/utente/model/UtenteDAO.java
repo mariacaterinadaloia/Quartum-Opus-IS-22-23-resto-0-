@@ -113,7 +113,7 @@ public class UtenteDAO implements DAO<UtenteBean> {
             String query="update "+ UtenteDAO.TABLE_NAME+" set password=? where mail=?";
             Connection con=null;
             PreparedStatement ps=null;
-
+            utenteBean.setPassword((String) key);
             try {
                 con= DriverManagerConnectionPool.getConnection();
 

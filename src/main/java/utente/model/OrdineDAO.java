@@ -46,7 +46,7 @@ public class OrdineDAO implements DAO<OrdineBean> {
         Integer id= (Integer) key;
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "select * from "+OrdineDAO.TABLE_NAME+"where id=?";
+        String query= "select * from "+OrdineDAO.TABLE_NAME+" where id=?";
         OrdineBean b=new OrdineBean();
 
         try {
@@ -76,7 +76,7 @@ public class OrdineDAO implements DAO<OrdineBean> {
     @Override
     public void doDeleteByKey(Object key) throws SQLException {
         Integer id= (Integer) key;
-        String query="delete from"+OrdineDAO.TABLE_NAME+"where id=?";
+        String query="delete from"+OrdineDAO.TABLE_NAME+" where id=?";
         Connection con=null;
         PreparedStatement ps=null;
 

@@ -38,15 +38,11 @@ create table prodotto(
     edizione int not null, 
     casa_editrice varchar(128) not null, 
     copertina varchar(512),
+    prezzo double not null,
+    acquistabile bool not null,
     primary key(ISBN)
 ); 
 
-create table effettuato_da(
-	ordine int not null, 
-    utente varchar(256) not null, 
-    foreign key(utente) references utente(mail), 
-    foreign key(ordine) references ordine(id)
-);
 
 create table scritto_da(
 	prodotto bigint not null, 
