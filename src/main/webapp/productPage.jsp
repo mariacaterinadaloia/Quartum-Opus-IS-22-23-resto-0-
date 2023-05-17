@@ -1,4 +1,4 @@
-<%--
+<%@ page import="utente.model.ProdottoBean" %><%--
   Created by IntelliJ IDEA.
   User: Francesca
   Date: 06/01/2023
@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  ProdottoBean libro = (ProdottoBean) request.getSession().getAttribute("libro");
+%>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -25,15 +28,15 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src=<%=libro.getCopertina()%> alt="..." /></div>
       <div class="col-md-6">
 
-        <h1 class="display-5 fw-bolder">Shop item template</h1>
+        <h1 class="display-5 fw-bolder"><%=libro.getNome()%></h1>
         <div class="fs-5 mb-5">
 
-          <span>$40.00</span>
+          <span><%=libro.getPrezzo()%></span>
         </div>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+        <p class="lead">Prova</p>
         <div class="d-flex">
           <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
           <button class="btn btn-outline-dark flex-shrink-0" type="button">

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="utente.model.UtenteBean" %><%--
   Created by IntelliJ IDEA.
   User: Francesca
   Date: 06/01/2023
@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    UtenteBean user = (UtenteBean) request.getSession().getAttribute("user");
+%>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -32,8 +35,19 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="./productList.jsp">Catalogo</a></li>
+                <%if(user==null){%>
                 <li class="nav-item"><a class="nav-link" href="./login.jsp">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="./signup.jsp">Registrati</a></li>
+                <%}
+                else if(user.isGestore()){%>
+                <li class="nav-item"><a class="nav-link" href="#">Area Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="<%=response.encodeRedirectURL("LogoutController")%>">Logout</a></li>
+                <%}
+                else{%>
+                <li class="nav-item"><a class="nav-link" href="#">Area Utente</a></li>
+                <li class="nav-item"><a class="nav-link" href="<%=response.encodeRedirectURL("LogoutController")%>">Logout</a></li>
+                <%}%>
+
             </ul>
             <form class="d-flex" action="./carrello.jsp">
                 <button class="btn btn-outline-dark" type="submit">

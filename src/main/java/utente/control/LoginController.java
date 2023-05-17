@@ -23,6 +23,8 @@ public class LoginController extends HttpServlet {
         UtenteBean utenteBean = new UtenteBean();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        System.out.println(email);
+        System.out.println(password);
 
         if(email == null || password == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errore nei parametri della richiesta");
@@ -32,6 +34,7 @@ public class LoginController extends HttpServlet {
             response.sendRedirect(response.encodeURL(request.getContextPath() + "/index.jsp"));
         }
         else{
+            System.out.println("Errore");
             request.setAttribute("error", true);
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
@@ -41,6 +44,7 @@ public class LoginController extends HttpServlet {
         UtenteDAO dao = new UtenteDAO();
         try{
             user = dao.doRetrieveByKey(email);
+            System.out.println(user.getNome());
             if(user.getPassword().equals(password))
                 return true;
         } catch (SQLException e){

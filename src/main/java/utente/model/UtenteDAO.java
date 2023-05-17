@@ -65,7 +65,7 @@ public class UtenteDAO implements DAO<UtenteBean> {
                 ResultSet rs= ps.executeQuery();
 
                 while(rs.next()) {
-                    b.setMail(rs.getString("email"));
+                    b.setMail(rs.getString("mail"));
                     b.setNome(rs.getString("nome"));
                     b.setDatadinascita(new java.util.Date(rs.getDate("datadinascita").getTime()));
                     b.setCognome(rs.getString("cognome"));
