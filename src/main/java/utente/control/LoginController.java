@@ -23,8 +23,7 @@ public class LoginController extends HttpServlet {
         UtenteBean utenteBean = new UtenteBean();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        System.out.println(email);
-        System.out.println(password);
+
 
         if(email == null || password == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errore nei parametri della richiesta");

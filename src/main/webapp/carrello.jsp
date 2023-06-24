@@ -1,4 +1,8 @@
-<%--
+<%@ page import="utente.model.Carrello" %>
+<%@ page import="utente.model.UtenteBean" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="utente.model.ProdottoBean" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: Francesca
   Date: 07/01/2023
@@ -6,6 +10,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Carrello cart = (Carrello) request.getSession().getAttribute("carrello");
+    UtenteBean user = (UtenteBean) request.getSession().getAttribute("user");
+
+    if(cart==null){
+        response.sendRedirect(response.encodeRedirectURL("CarrelloController"));
+        return;
+    }
+
+    ArrayList<ProdottoBean> prodotti = cart.getItems();
+
+    boolean flag=false;
+    if(prodotti.size()==0) flag=true;
+%>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -24,7 +42,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<section class="h-100 h-custom">
+<section class="h-100 h-custom mb-0">
     <div class="container h-100 py-5">
         <div class="row d-flex h-100">
             <div class="col">
@@ -36,13 +54,18 @@
                             <th class="h5">Carrello</th>
                             <th>Prodotto</th>
                             <th></th>
-                            <th>Quantità</th>
                             <th>Prezzo</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
+                        <%if(!flag){ %>
+                        <% for (ProdottoBean bean : prodotti){
 
+                            double prezzo = bean.getPrezzo();
+                            long ISBN = bean.getISBN();
+                            DecimalFormat df = new DecimalFormat("#.00");
+                        %>
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -53,56 +76,47 @@
                             </td>
 
                             <td class="align-middle"> <div class="flex-column ms-4">
-                                <p class="mb-2 ml-2">prova</p>
+                                <p class="mb-2 ml-2"><%=bean.getNome()%></p>
 
                             </div>
                             </td>
                             <td></td>
 
+
                             <td class="align-middle">
-                                <div class="d-flex flex-row">
-
-                                    <a class="btn btn-link px-2"
-                                       href="">
-                                        <i class="fa fa-minus"></i>
-                                    </a>
-
-                                    <h5 class="mt-1">1</h5>
-
-
-                                    <a class="btn btn-link px-2"
-                                       href="">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <p class="mb-0" style="font-weight: 500;">10€</p>
+                                <p class="mb-0" style="font-weight: 500;"><%=df.format(prezzo)%>€</p>
                             </td>
                             <td class="align-middle">
 
-                                <a class="btn btn-primary" href="" style="background-color: #800000; color:white">Elimina</a>
+                                <a class="btn btn-primary" href="./CarrelloController?action=deleteCart&ISBN=<%=ISBN%>" style="background-color: #800000; color:white">Elimina</a>
                             </td>
                         </tr>
-
+                        <%}%>
+                        <%} else{%>
+                            <h2 class="text-center font-weight-light">Non ci sono articoli nel carrello</h2>
+                        <%}%>
                         </tbody>
                     </table>
                 </div>
-                <div class="container text-center">
-
-
-                    <p>Effettua il login o registrati prima di finalizzare l'acquisto</p>
-                    <a class="btn btn-primary mb-4" href="./login.jsp" style="background-color: #800000; color:white">Login</a>
-
-                </div>
-
-
             </div>
         </div>
     </div>
 </section>
 
-
+<section>
+    <div class="container text-center">
+        <%if(!flag){%>
+        <a class="btn btn-primary mb-4" href="./CarrelloController?action=clearCart" style="background-color: #800000; color:white">Svuota carrello</a>
+        <%} %>
+        <br>
+        <%if(!flag && user!=null){ %>
+        <a class="btn btn-primary mb-4" href="./checkout.jsp" style="background-color: #800000; color:white">Vai al checkout</a>
+        <%} else if(!flag && user==null){ %>
+        <p>Effettua il login o registrati prima di finalizzare l'acquisto</p>
+        <a class="btn btn-primary mb-4" href="./login.jsp" style="background-color: #800000; color:white">Login</a>
+        <%} %>
+    </div>
+</section>
 
 
 

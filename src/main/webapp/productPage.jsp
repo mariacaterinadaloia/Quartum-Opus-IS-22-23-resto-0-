@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-  ProdottoBean libro = (ProdottoBean) request.getSession().getAttribute("libro");
+  ProdottoBean libro = (ProdottoBean) request.getAttribute("libro");
 %>
 <html>
 <head>
@@ -28,7 +28,7 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src=<%=libro.getCopertina()%> alt="..." /></div>
+      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src=https://www.pixartprinting.it/blog/wp-content/uploads/2020/01/2-4.jpg alt="..." /></div>
       <div class="col-md-6">
 
         <h1 class="display-5 fw-bolder"><%=libro.getNome()%></h1>
@@ -38,11 +38,10 @@
         </div>
         <p class="lead">Prova</p>
         <div class="d-flex">
-          <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-          <button class="btn btn-outline-dark flex-shrink-0" type="button">
+          <a class="btn btn-outline-dark flex-shrink-0" href="./CarrelloController?action=addCart&ISBN=<%=libro.getISBN()%>">
             <i class="bi-cart-fill me-1"></i>
             Aggiungi al carrello
-          </button>
+          </a>
         </div>
       </div>
     </div>

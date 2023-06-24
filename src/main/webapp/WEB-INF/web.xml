@@ -34,11 +34,37 @@
     <servlet>
         <servlet-name>ProductPageController</servlet-name>
         <servlet-class>utente.control.ProductPageController</servlet-class>
-        <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductPageController</servlet-name>
         <url-pattern>/ProductPageController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignupController</servlet-name>
+        <servlet-class>utente.control.SignupController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignupController</servlet-name>
+        <url-pattern>/SignupController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CatalogoController</servlet-name>
+        <servlet-class>utente.control.CatalogoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CatalogoController</servlet-name>
+        <url-pattern>/CatalogoController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CarrelloController</servlet-name>
+        <servlet-class>utente.control.CarrelloController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CarrelloController</servlet-name>
+        <url-pattern>/CarrelloController</url-pattern>
     </servlet-mapping>
 
 </web-app>

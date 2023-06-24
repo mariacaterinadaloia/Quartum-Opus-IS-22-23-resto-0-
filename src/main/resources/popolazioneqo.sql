@@ -52,9 +52,9 @@ create table prodotto(
     primary key(ISBN)
 ); */
 
-insert into prodotto values (93764321, 'I tuoi occhi mi parlano...',  'romanzo', 2020, 3, 'Einadi', 'StringCopertina', true);
-insert into prodotto values (98483645, '.., e mi dicono...', 'thriller', 2008, 4, 'Feltrinelli', 'String',true);
-insert into prodotto values (2844872, '...hai paura di IS', 'giallo', 2011, 1,  'Mondadori', 'strgg', false);
+insert into prodotto values (93764321, 'I tuoi occhi mi parlano...',  'romanzo', 2020, 3, 'Einadi', 'StringCopertina', 10, true);
+insert into prodotto values (98483645, '.., e mi dicono...', 'thriller', 2008, 4, 'Feltrinelli', 'String', 14, true);
+insert into prodotto values (2844872, '...hai paura di IS', 'giallo', 2011, 1,  'Mondadori', 'strgg', 9, false);
 /*
 
 create table scritto_da(
