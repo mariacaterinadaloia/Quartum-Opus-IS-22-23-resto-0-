@@ -7,6 +7,7 @@ import utente.model.UtenteBean;
 import utente.model.UtenteDAO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "LoginController", value = "/LoginController")
@@ -14,15 +15,16 @@ public class LoginController extends HttpServlet {
     UtenteBean user;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UtenteBean utenteBean = new UtenteBean();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        PrintWriter out = response.getWriter();
         System.out.println(email);
         System.out.println(password);
 
@@ -31,10 +33,12 @@ public class LoginController extends HttpServlet {
         }
         else if(checkLogin(email, password)){
             request.getSession().setAttribute("user", user);
+            out.print("Login effettuato con successo.");
             response.sendRedirect(response.encodeURL(request.getContextPath() + "/index.jsp"));
         }
         else{
             System.out.println("Errore");
+            out.print("Password non valida.");
             request.setAttribute("error", true);
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
