@@ -1,7 +1,7 @@
 <%@ page import="java.util.Collection" %>
-<%@ page import="utente.model.ProdottoBean" %>
+<%@ page import="gestore.model.ProdottoBean" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="utente.model.ProdottoDAO" %>
+<%@ page import="gestore.model.ProdottoDAO" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>

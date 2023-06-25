@@ -1,17 +1,11 @@
 package utente;
 
-import gestore.model.AutoreBean;
-import gestore.model.AutoreDAO;
-import gestore.model.ScrittoDaBean;
-import gestore.model.ScrittoDaDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utente.model.OrdineBean;
-import utente.model.OrdineDAO;
-
-import java.util.Date;
+import gestore.model.OrdineBean;
+import gestore.model.OrdineDAO;
 
 public class OrdineDAOTest {
     OrdineDAO dao = new OrdineDAO();

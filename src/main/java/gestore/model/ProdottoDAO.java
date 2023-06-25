@@ -1,4 +1,4 @@
-package utente.model;
+package gestore.model;
 
 import connection.DriverManagerConnectionPool;
 import generic.DAO;

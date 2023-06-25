@@ -1,17 +1,11 @@
 package utente;
 
-import gestore.model.AutoreBean;
-import gestore.model.AutoreDAO;
-import gestore.model.ScrittoDaBean;
-import gestore.model.ScrittoDaDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utente.model.ProdottoBean;
-import utente.model.ProdottoDAO;
-
-import java.util.Date;
+import gestore.model.ProdottoBean;
+import gestore.model.ProdottoDAO;
 
 public class ProdottoDAOTest {
     ProdottoDAO dao = new ProdottoDAO();

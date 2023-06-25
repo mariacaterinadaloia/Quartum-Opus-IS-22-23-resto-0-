@@ -1,4 +1,4 @@
-package Testing_Iniziale;
+package gestore;
 
 import gestore.model.*;
 import org.junit.jupiter.api.AfterEach;

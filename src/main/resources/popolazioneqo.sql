@@ -80,4 +80,13 @@ create table contiene(
 insert into contiene values (1,93764321);
 insert into contiene values (1, 98483645); 
 insert into contiene values (2, 98483645); 
-insert into contiene values (3, 98483645); 
+insert into contiene values (3, 98483645);
+/*create table  recensione(
+    utente varchar(256) not null,
+    foreign key(utente) references utente(mail),
+    prodotto bigint not null,
+    foreign key(prodotto) references prodotto(ISBN),
+    text varchar(1024) not null
+); */
+insert into recensione values ('manuilmagnifico@hotmail.com',93764321, 'bel libro');
+insert into recensione values ('manuilmagnifico@hotmail.com',, 'bel libro');

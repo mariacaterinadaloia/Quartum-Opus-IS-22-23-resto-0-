@@ -1,4 +1,4 @@
-package Testing_Iniziale;
+package gestore;
 
 import gestore.model.AutoreBean;
 import gestore.model.AutoreDAO;

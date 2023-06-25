@@ -1,11 +1,10 @@
-package utente.control;
+package gestore.control;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import utente.model.ProdottoBean;
-import utente.model.ProdottoDAO;
-import utente.model.UtenteBean;
+import gestore.model.ProdottoBean;
+import gestore.model.ProdottoDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;

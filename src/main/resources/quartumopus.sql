@@ -57,3 +57,22 @@ create table contiene(
     prodotto bigint not null, 
 	foreign key(prodotto) references prodotto(ISBN)
 );
+
+create table  recensione(
+    idRecensione int not null primary key,
+    text varchar(1024) not null
+);
+
+create table recDa(
+                      utente varchar(256) not null,
+                      foreign key(utente) references utente(mail),
+                      recensione int not null,
+                      foreign key(recensione) references recensione(idRecensione)
+);
+
+create table recDi(
+                      prodotto bigint not null,
+                      foreign key(prodotto) references prodotto(ISBN)
+                      recensione int not null,
+                      foreign key(recensione) references recensione(idRecensione)
+);

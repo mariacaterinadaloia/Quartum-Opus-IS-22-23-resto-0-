@@ -1,4 +1,4 @@
-<%@ page import="utente.model.ProdottoBean" %><%--
+<%@ page import="gestore.model.ProdottoBean" %><%--
   Created by IntelliJ IDEA.
   User: Francesca
   Date: 06/01/2023

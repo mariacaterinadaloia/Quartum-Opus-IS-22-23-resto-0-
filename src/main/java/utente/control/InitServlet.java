@@ -3,10 +3,9 @@ package utente.control;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import utente.model.ProdottoBean;
-import utente.model.ProdottoDAO;
+import gestore.model.ProdottoBean;
+import gestore.model.ProdottoDAO;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
