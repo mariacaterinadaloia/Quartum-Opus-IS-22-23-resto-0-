@@ -94,7 +94,7 @@ public class LoginServletTest {
         @Test
         public void usernameNonValido() throws SQLException, ServletException, IOException, ParseException {
             String username="manueeee";
-            String password="ManuelSica1.";
+            String password="ecomestaijj";
 
             PrintWriter out = Mockito.mock(PrintWriter.class);
             ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
