@@ -27,7 +27,6 @@ public class LoginController extends HttpServlet {
         PrintWriter out = response.getWriter();
         System.out.println(email);
         System.out.println(password);
-
         if(email == null || password == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errore nei parametri della richiesta");
         }

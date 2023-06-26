@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String error = (String) request.getAttribute("errorSignup");
+    %>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,6 +24,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+        .error {
+            box-shadow: 0 0 3px #CC0000; margin: 10px
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -34,13 +42,17 @@
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrati</p>
-
-                                <form class="mx-1 mx-md-4">
+                                <%if ( error != null ) { %>
+                                <div id="fadeError">
+                                    <p class="errTextInterior"><%=error%></p>
+                                </div>
+                                <% } %>
+                                <form class="mx-1 mx-md-4" method="post" action="<%=response.encodeURL("SignupController")%>">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
 
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example1c" class="form-control" />
+                                            <input type="text" id="form3Example1c" class="form-control" name="nome"/>
                                             <label class="form-label" for="form3Example1c">Nome</label>
                                         </div>
                                     </div>
@@ -48,7 +60,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
 
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="form3Example3c" class="form-control" />
+                                            <input type="text" id="form3Example3c" class="form-control" name="cognome" />
                                             <label class="form-label" for="form3Example3c">Cognome</label>
                                         </div>
                                     </div>
@@ -56,27 +68,17 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
 
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="email" id="form3Example4c" class="form-control" />
+                                            <input type="email" id="form3Example4c" class="form-control" name="email" />
                                             <label class="form-label" for="form3Example4c">Email</label>
                                         </div>
                                     </div>
 
-                                    <div class="d-flex flex-row align-items-center mb-4">
 
-                                        <div class="form-outline flex-fill mb-0">
-                                            <select class="form-select" id= "select" aria-label="Default select example">
-                                                <option selected>M</option>
-                                                <option value="F">F</option>
-                                                <option value="A">Altro</option>
-                                            </select>
-                                            <label class="form-label" for="select">Sesso</label>
-                                        </div>
-                                    </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
 
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="date" id="form3Example4cd1" class="form-control" />
+                                            <input type="date" id="form3Example4cd1" class="form-control" name="dataNascita"/>
                                             <label class="form-label" for="form3Example4cd1">Data di nascita</label>
                                         </div>
                                     </div>
@@ -84,13 +86,13 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
 
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="password" id="form3Example4cd2" class="form-control" />
+                                            <input type="password" id="form3Example4cd2" class="form-control" name="password"/>
                                             <label class="form-label" for="form3Example4cd2">Password</label>
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="button" class="btn btn-primary btn-lg">Registrati</button>
+                                        <button type="submit" class="btn btn-primary btn-lg">Registrati</button>
                                     </div>
 
                                 </form>

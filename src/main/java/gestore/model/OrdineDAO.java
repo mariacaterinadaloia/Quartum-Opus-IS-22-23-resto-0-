@@ -120,7 +120,7 @@ public class OrdineDAO implements DAO<OrdineBean> {
 
     @Override
     public void doInsert(OrdineBean ordineBean) throws SQLException {
-        String query="Insert into "+ OrdineDAO.TABLE_NAME+" values(?,?)";
+        String query="Insert into "+ OrdineDAO.TABLE_NAME+" (data, utente) values(?,?)";
         Connection con=null;
         PreparedStatement ps=null;
 
@@ -139,6 +139,34 @@ public class OrdineDAO implements DAO<OrdineBean> {
                 DriverManagerConnectionPool.releaseConnection(con);
             }
         }
+    }
+
+    public int doGetLatestId() throws SQLException{
+        Connection con=null;
+        PreparedStatement ps=null;
+        String query= "SELECT MAX(ID) FROM "+OrdineDAO.TABLE_NAME;
+        int result=0;
+
+        try {
+            con= DriverManagerConnectionPool.getConnection();
+
+            ps=con.prepareStatement(query);
+
+            ResultSet rs= ps.executeQuery();
+
+            while(rs.next()) {
+                result=rs.getInt("MAX(id)");
+            }
+            rs.close();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            }finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+
+        }
+        return result;
     }
 
 

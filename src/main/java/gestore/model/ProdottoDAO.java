@@ -35,6 +35,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
                 b.setCasaEditrice(rs.getString("casa_editrice"));
+                b.setPrezzo(rs.getDouble("prezzo"));
                 ab.add(b);
             }
             rs.close();
@@ -54,7 +55,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         Long ISBN = (Long) key;
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "select * from "+ProdottoDAO.TABLE_NAME+"where ISBN=?";
+        String query= "select * from "+ProdottoDAO.TABLE_NAME+" where ISBN=?";
         ProdottoBean b=new ProdottoBean();
 
         try {
@@ -72,6 +73,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
                 b.setCasaEditrice(rs.getString("casa_editrice"));
+                b.setPrezzo(rs.getDouble("prezzo"));
             }
             rs.close();
         }finally {

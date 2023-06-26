@@ -2,6 +2,8 @@ package gestore.model;
 
 import generic.Bean;
 
+import java.util.Objects;
+
 public class ProdottoBean implements Bean {
     private long ISBN;
     private String nome;
@@ -85,5 +87,18 @@ public class ProdottoBean implements Bean {
 
     public void setISBN(long ISBN) {
         this.ISBN = ISBN;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProdottoBean that = (ProdottoBean) o;
+        return ISBN == that.ISBN && anno == that.anno && edizione == that.edizione && Double.compare(that.prezzo, prezzo) == 0 && acquistabile == that.acquistabile && nome.equals(that.nome) && genere.equals(that.genere) && copertina.equals(that.copertina) && casa_editrice.equals(that.casa_editrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ISBN, nome, genere, anno, edizione, copertina, casa_editrice, prezzo, acquistabile);
     }
 }
