@@ -30,11 +30,11 @@ public class ProdottoBean implements Bean {
     }
 
     public String getCasaEditrice() {
-        return casa_editrice;
+        return casaEditrice;
     }
 
     public void setCasaEditrice(String casa_editrice) {
-        this.casa_editrice = casa_editrice;
+        this.casaEditrice = casa_editrice;
     }
 
     public ProdottoBean(){};

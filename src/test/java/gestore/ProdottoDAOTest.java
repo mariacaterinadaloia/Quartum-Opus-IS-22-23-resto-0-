@@ -16,7 +16,7 @@ public class ProdottoDAOTest {
         bean.setAnno(0);
         bean.setCopertina("c");
         bean.setNome("Test");
-        bean.setCasa_editrice("Test");
+        bean.setCasaEditrice("Test");
         bean.setISBN(0);
         bean.setGenere("Test");
         dao.doInsert(bean);
