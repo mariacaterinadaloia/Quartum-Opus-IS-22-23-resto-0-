@@ -94,7 +94,7 @@ public class ProdottoBean implements Bean {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProdottoBean that = (ProdottoBean) o;
-        return ISBN == that.ISBN && anno == that.anno && edizione == that.edizione && Double.compare(that.prezzo, prezzo) == 0 && acquistabile == that.acquistabile && nome.equals(that.nome) && genere.equals(that.genere) && copertina.equals(that.copertina) && casa_editrice.equals(that.casa_editrice);
+        return ISBN == that.ISBN && anno == that.anno && edizione == that.edizione && Double.compare(that.prezzo, prezzo) == 0 && acquistabile == that.acquistabile && nome.equals(that.nome) && genere.equals(that.genere) && copertina.equals(that.copertina) && casaEditrice.equals(that.casaEditrice);
     }
 
     @Override
