@@ -6,14 +6,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import gestore.model.OrdineBean;
 import gestore.model.OrdineDAO;
+import utente.model.UtenteBean;
+import utente.model.UtenteDAO;
 
 public class OrdineDAOTest {
     OrdineDAO dao = new OrdineDAO();
     OrdineBean bean = new OrdineBean();
 
-
+    UtenteDAO dao1 = new UtenteDAO();
+    UtenteBean bean1 = new UtenteBean();
     @BeforeEach
     public void setUp() throws Exception {
+        bean1.setCognome("Test");
+        bean1.setDatadinascita(null);
+        bean1.setNome("Test");
+        bean1.setGestore(false);
+        bean1.setMail("Test@java1");
+        bean1.setPassword("TestPass");
+        bean.setUtente("Test@java");
+        dao1.doInsert(bean1);
         bean.setId(0);
         bean.setUtente("Test");
         bean.setData(null);

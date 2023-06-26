@@ -55,7 +55,18 @@ public class RecDaDAOTest {
 
         @Test
         void doModifyTest() throws Exception{
-            dao.doModifyByKey("NewPass", bean);
+            bean1.setCognome("Test");
+            bean1.setDatadinascita(null);
+            bean1.setNome("Test");
+            bean1.setGestore(false);
+            bean1.setMail("Test@java1");
+            bean1.setPassword("TestPass");
+            bean.setUtente("Test@java");
+            dao1.doInsert(bean1);
+            bean3.setIdRecensione(1000);
+            bean3.setText("test");
+            dao3.doInsert(bean3);
+            dao.doModifyByKey("Test@java1", bean);
             Assertions.assertEquals(dao.doRetrieveByKey(bean.getRecensione()).getUtente(), bean.getUtente());
         }
 }

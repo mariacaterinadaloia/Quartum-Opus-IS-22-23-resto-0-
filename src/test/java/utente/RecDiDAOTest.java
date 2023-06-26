@@ -54,7 +54,14 @@ public class RecDiDAOTest {
 
     @Test
     void doModifyTest() throws Exception{
-        dao.doModifyByKey("NewPass", bean);
+        bean2.setAnno(0);
+        bean2.setCopertina("c");
+        bean2.setNome("Test");
+        bean2.setCasa_editrice("Test");
+        bean2.setISBN(1);
+        bean2.setGenere("Testthrows Exception {");
+        dao2.doInsert(bean2);
+        dao.doModifyByKey(1, bean);
         Assertions.assertEquals(dao.doRetrieveByKey(bean.getRecensione()).getProdotto(), bean.getProdotto());
     }
 }
