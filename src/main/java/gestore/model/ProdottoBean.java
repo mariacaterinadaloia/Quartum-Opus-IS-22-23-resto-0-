@@ -99,6 +99,6 @@ public class ProdottoBean implements Bean {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ISBN, nome, genere, anno, edizione, copertina, casa_editrice, prezzo, acquistabile);
+        return Objects.hash(ISBN, nome, genere, anno, edizione, copertina, casaEditrice, prezzo, acquistabile);
     }
 }

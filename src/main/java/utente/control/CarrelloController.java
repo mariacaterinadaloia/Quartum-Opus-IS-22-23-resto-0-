@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import utente.model.*;
+import gestore.model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;

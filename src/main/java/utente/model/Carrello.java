@@ -1,4 +1,5 @@
 package utente.model;
+import gestore.model.ProdottoBean;
 
 import java.util.ArrayList;
 
