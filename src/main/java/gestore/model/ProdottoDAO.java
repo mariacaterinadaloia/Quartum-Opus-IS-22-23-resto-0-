@@ -34,7 +34,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setAnno(rs.getInt("anno"));
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
-                b.setCasa_editrice(rs.getString("casa_editrice"));
+                b.setCasaEditrice(rs.getString("casa_editrice"));
                 ab.add(b);
             }
             rs.close();
@@ -71,7 +71,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setAnno(rs.getInt("anno"));
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
-                b.setCasa_editrice(rs.getString("casa_editrice"));
+                b.setCasaEditrice(rs.getString("casa_editrice"));
             }
             rs.close();
         }finally {
@@ -125,7 +125,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
             ps.setString(3, prodottoBean.getGenere().toUpperCase());
             ps.setInt(4, prodottoBean.getAnno());
             ps.setInt(5, prodottoBean.getEdizione());
-            ps.setString(6, prodottoBean.getCasa_editrice());
+            ps.setString(6, prodottoBean.getCasaEditrice());
             ps.setString(7, prodottoBean.getCopertina());
             ps.execute();
 
@@ -250,7 +250,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set casa_editrice=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setCasa_editrice(casaEditrice);
+        prodottoBean.setCasaEditrice(casaEditrice);
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -333,7 +333,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setAnno(rs.getInt("anno"));
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
-                b.setCasa_editrice(rs.getString("casa_editrice"));
+                b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setAcquistabile(rs.getBoolean("acquistabile"));
                 b.setPrezzo(rs.getDouble("prezzo"));
                 ab.add(b);
@@ -370,7 +370,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setAnno(rs.getInt("anno"));
                 b.setEdizione(rs.getInt("edizione"));
                 b.setCopertina(rs.getString("copertina"));
-                b.setCasa_editrice(rs.getString("casa_editrice"));
+                b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setAcquistabile(rs.getBoolean("acquistabile"));
                 b.setPrezzo(rs.getDouble("prezzo"));
             }
