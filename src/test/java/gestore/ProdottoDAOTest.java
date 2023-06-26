@@ -67,7 +67,7 @@ public class ProdottoDAOTest {
     @Test
     void updateProdottoCasaEditrice() throws Exception{
         dao.doModifyGenere(bean, "Test2");
-        Assertions.assertEquals(dao.doRetrieveByKey(bean.getISBN()).getCasa_editrice(), bean.getCasa_editrice());
+        Assertions.assertEquals(dao.doRetrieveByKey(bean.getISBN()).getCasaEditrice(), bean.getCasaEditrice());
     }
 
     @Test

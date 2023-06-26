@@ -9,7 +9,7 @@ public class ProdottoBean implements Bean {
     private int anno;
     private int edizione;
     private String copertina;
-    private String casa_editrice;
+    private String casaEditrice;
     private double prezzo;
     private boolean acquistabile;
 
@@ -29,11 +29,11 @@ public class ProdottoBean implements Bean {
         this.prezzo = prezzo;
     }
 
-    public String getCasa_editrice() {
+    public String getCasaEditrice() {
         return casa_editrice;
     }
 
-    public void setCasa_editrice(String casa_editrice) {
+    public void setCasaEditrice(String casa_editrice) {
         this.casa_editrice = casa_editrice;
     }
 
