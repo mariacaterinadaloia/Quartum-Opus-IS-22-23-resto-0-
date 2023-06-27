@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utente.control.LoginController;
 
-public class LoginServletTest {
+public class LoginControllerTest {
 
         private static LoginController servlet = new LoginController();
         private static  HttpServletRequest request ;

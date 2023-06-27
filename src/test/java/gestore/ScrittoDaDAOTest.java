@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class ScrittoDaDAOTest {
@@ -20,7 +21,7 @@ public class ScrittoDaDAOTest {
         ab.setCodice("test01");
         ab.setCognome("D'Aloia");
         ab.setNome("Cate");
-        ab.setDatanascita(new Date());
+        ab.setDatanascita(Calendar.getInstance().getTime());
         ad.doInsert(ab);
         bean.setAutore(ab.getCodice());
         bean.setProdotto(93764321);

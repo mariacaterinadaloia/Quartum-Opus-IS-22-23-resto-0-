@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import utente.model.UtenteBean;
 import utente.model.UtenteDAO;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class UtenteDAOTest {
@@ -21,7 +22,7 @@ public class UtenteDAOTest {
     @BeforeEach
     public void setUp() throws Exception {
         bean.setCognome("Test");
-        bean.setDatadinascita(null);
+        bean.setDatadinascita(Calendar.getInstance().getTime());
         bean.setNome("Test");
         bean.setGestore(false);
         bean.setMail("Test@java");

@@ -9,6 +9,9 @@ import gestore.model.OrdineDAO;
 import utente.model.UtenteBean;
 import utente.model.UtenteDAO;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class OrdineDAOTest {
     OrdineDAO dao = new OrdineDAO();
     OrdineBean bean = new OrdineBean();
@@ -18,7 +21,7 @@ public class OrdineDAOTest {
     @BeforeEach
     public void setUp() throws Exception {
         bean1.setCognome("Test");
-        bean1.setDatadinascita(null);
+        bean1.setDatadinascita(Calendar.getInstance().getTime());
         bean1.setNome("Test");
         bean1.setGestore(false);
         bean1.setMail("Test@java1");
@@ -26,8 +29,8 @@ public class OrdineDAOTest {
         bean.setUtente("Test@java");
         dao1.doInsert(bean1);
         bean.setId(0);
-        bean.setUtente("Test");
-        bean.setData(null);
+        bean.setUtente("Test@java");
+        bean.setData(Calendar.getInstance().getTime());
     }
 
     @AfterEach

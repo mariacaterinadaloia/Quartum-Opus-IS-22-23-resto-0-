@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class AutoreDAOTest {
@@ -19,7 +20,7 @@ public class AutoreDAOTest {
         ab.setCodice("test01");
         ab.setCognome("D'Aloia");
         ab.setNome("Cate");
-        ab.setDatanascita(new Date());
+        ab.setDatanascita(Calendar.getInstance().getTime());
         ad.doInsert(ab);
     }
 
@@ -52,7 +53,7 @@ public class AutoreDAOTest {
 
     @Test
     void updateDateAutore() throws Exception{
-        ad.doModifyDataNascita(ab, null);
+        ad.doModifyDataNascita(ab, Calendar.getInstance().getTime());
         Assertions.assertEquals(ad.doRetrieveByKey(ab.getCodice()).getDatanascita(), ab.getDatanascita());
     }
 

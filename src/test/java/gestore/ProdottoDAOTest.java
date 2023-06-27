@@ -19,6 +19,7 @@ public class ProdottoDAOTest {
         bean.setCasaEditrice("Test");
         bean.setISBN(0);
         bean.setGenere("Test");
+        bean.setPrezzo(0.0);
         dao.doInsert(bean);
     }
 
