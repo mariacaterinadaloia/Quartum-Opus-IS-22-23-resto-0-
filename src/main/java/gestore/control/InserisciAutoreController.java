@@ -29,7 +29,7 @@ public class InserisciAutoreController extends HttpServlet {
         LocalDate data = LocalDate.parse(dataNascita);
 
         if(codice == null || nome == null || cognome == null || dataNascita == null){
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errori nei parametri della richiesta!");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
             return;
         }
 
