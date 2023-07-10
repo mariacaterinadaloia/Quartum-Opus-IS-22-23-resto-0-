@@ -7,6 +7,7 @@ import utente.model.UtenteBean;
 import utente.model.UtenteDAO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -18,10 +19,10 @@ public class SignupController extends HttpServlet {
 
     private static final String insertError = "Errore sui parametri";
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-
+        PrintWriter out = response.getWriter();
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String password = request.getParameter("password");
@@ -39,12 +40,14 @@ public class SignupController extends HttpServlet {
 
 
             if ( ! ( checkName && checkSurname  && checkPassword && checkEmail ) ){
+                out.print("Errore");
                 request.setAttribute("errorSignup", insertError);
                 request.getRequestDispatcher("/signup.jsp").forward(request, response);
                 return;
             }
         }
         else {
+            out.print("Errore");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errori nei parametri della richiesta!");
             return;
         }
@@ -58,6 +61,7 @@ public class SignupController extends HttpServlet {
             e.printStackTrace();
         }
         if(ut.getMail() != null){
+            out.print("Mail esistente.");
             request.setAttribute("errorSignup", "Email già inserita!");
             request.getRequestDispatcher("/signup.jsp").forward(request, response);
             return;
@@ -76,12 +80,12 @@ public class SignupController extends HttpServlet {
         } catch (SQLException e){
             e.printStackTrace();
         }
-
+        out.print("Successo.");
         response.sendRedirect(response.encodeURL(request.getContextPath() + "/login.jsp"));
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
 }
