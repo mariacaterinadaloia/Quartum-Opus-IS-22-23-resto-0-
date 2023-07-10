@@ -14,12 +14,12 @@ import java.sql.SQLException;
 @WebServlet(name = "ModificaProdottoController", value = "/ModificaProdottoController")
 public class ModificaProdottoController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         Long codice = Long.parseLong(request.getParameter("codice"));
         ProdottoDAO dao = new ProdottoDAO();
@@ -125,7 +125,6 @@ public class ModificaProdottoController extends HttpServlet {
             }
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/CatalogoAdminController");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/CatalogoAdminController");
     }
 }

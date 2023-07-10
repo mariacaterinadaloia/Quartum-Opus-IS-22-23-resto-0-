@@ -28,11 +28,12 @@ public class LoginController extends HttpServlet {
         System.out.println(email);
         System.out.println(password);
         if(email == null || password == null){
+            out.print("User non valido.");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errore nei parametri della richiesta");
         } else if (!checkEmail(email)) {
             out.print("User non valido.");
-            request.setAttribute("error", true);
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+            request.getSession().setAttribute("error", true);
+            response.sendRedirect(response.encodeURL(request.getContextPath() + "/login.jsp"));
         } else if(checkLogin(email, password)){
             request.getSession().setAttribute("user", user);
             out.print("Login effettuato con successo.");
@@ -41,8 +42,9 @@ public class LoginController extends HttpServlet {
         else{
             System.out.println("Errore");
             out.print("Password non valida.");
-            request.setAttribute("error", true);
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+            request.getSession().setAttribute("error", true);
+            response.sendRedirect(response.encodeURL(request.getContextPath() + "/login.jsp"));
+            //request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
     }
 

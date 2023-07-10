@@ -14,12 +14,12 @@ import java.sql.SQLException;
 @WebServlet(name = "InserisciProdottoController", value = "/InserisciProdottoController")
 public class InserisciProdottoController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long ISBN = Long.parseLong(request.getParameter("isbn"));
         String nome = request.getParameter("nome");
         String genere = request.getParameter("genere");
@@ -67,7 +67,6 @@ public class InserisciProdottoController extends HttpServlet {
             e.printStackTrace();
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/CatalogoAdminController");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/CatalogoAdminController");
     }
 }

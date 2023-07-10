@@ -46,7 +46,6 @@ public class InserisciAutoreController extends HttpServlet {
             e.printStackTrace();
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/AutoriController");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/AutoriController");
     }
 }

@@ -12,7 +12,7 @@
         response.sendRedirect(request.getContextPath() + "index.jsp");
         return;
     }
-    Boolean error = (Boolean) request.getAttribute("error");
+    Boolean error = (Boolean) request.getSession().getAttribute("error");
     if(error == null){
         error = false;
     }

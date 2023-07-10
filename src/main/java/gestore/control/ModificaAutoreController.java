@@ -15,12 +15,12 @@ import java.util.Date;
 @WebServlet(name = "ModificaAutoreController", value = "/ModificaAutoreController")
 public class ModificaAutoreController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         String codice = request.getParameter("codice");
         AutoreDAO dao = new AutoreDAO();
@@ -77,7 +77,6 @@ public class ModificaAutoreController extends HttpServlet {
             }
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/AutoriController");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/AutoriController");
     }
 }
