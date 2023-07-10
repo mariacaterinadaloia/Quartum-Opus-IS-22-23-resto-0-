@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 import utente.model.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "InserisciRecensioneController", value = "/InserisciRecensioneController")
@@ -20,6 +21,12 @@ public class InserisciRecensioneController extends HttpServlet {
         String recensione = request.getParameter("testoRec");
         String mail = request.getParameter("mail");
         Long ISBN = Long.parseLong(request.getParameter("ISBN"));
+        PrintWriter out = response.getWriter();
+        if(recensione == null){
+            out.print("Errore nell'inserimento");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Recensione vuota!");
+            return;
+        }
 
         RecensioneDAO dao = new RecensioneDAO();
         RecDaDAO dao1 = new RecDaDAO();
@@ -54,6 +61,7 @@ public class InserisciRecensioneController extends HttpServlet {
             e.printStackTrace();
         }
 
+        out.print("Recensione inserita con successo");
         String url = "/VisualizzaOrdiniController?email=" + mail;
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);

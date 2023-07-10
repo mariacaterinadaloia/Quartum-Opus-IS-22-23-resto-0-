@@ -23,12 +23,21 @@ public class InserisciProdottoController extends HttpServlet {
         Long ISBN = Long.parseLong(request.getParameter("isbn"));
         String nome = request.getParameter("nome");
         String genere = request.getParameter("genere");
+        if(request.getParameter("anno") == null || request.getParameter("edizione") == null || request.getParameter("prezzo") == null){
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+            return;
+        }
         int anno = Integer.parseInt(request.getParameter("anno"));
         int edizione = Integer.parseInt(request.getParameter("edizione"));
         String copertina = request.getParameter("copertina");
         String casaEditrice = request.getParameter("casa");
         double prezzo = Double.parseDouble(request.getParameter("prezzo"));
         String codiceAutore = request.getParameter("codiceAutore");
+
+        if(ISBN == null || nome == null || genere == null || copertina == null || casaEditrice == null || codiceAutore == null){
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+            return;
+        }
 
         ProdottoBean bean = new ProdottoBean();
         bean.setISBN(ISBN);

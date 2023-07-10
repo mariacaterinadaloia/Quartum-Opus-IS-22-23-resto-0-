@@ -34,6 +34,10 @@ public class ModificaProdottoController extends HttpServlet {
         switch(action){
             case "modifyNome":{
                 String nome = request.getParameter("nome");
+                if(nome == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 try{
                     dao.doModifyNome(bean, nome);
                 } catch(SQLException e){
@@ -43,6 +47,10 @@ public class ModificaProdottoController extends HttpServlet {
             }
             case "modifyGenere":{
                 String genere = request.getParameter("genere");
+                if(genere==null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 try{
                     dao.doModifyGenere(bean, genere);
                 } catch(SQLException e){
@@ -51,6 +59,10 @@ public class ModificaProdottoController extends HttpServlet {
                 break;
             }
             case "modifyAnno":{
+                if(request.getParameter("anno") == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 int anno = Integer.parseInt(request.getParameter("anno"));
                 try{
                     dao.doModifyAnno(bean, anno);
@@ -60,6 +72,10 @@ public class ModificaProdottoController extends HttpServlet {
                 break;
             }
             case "modifyEdizione":{
+                if(request.getParameter("edizione") == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 int edizione = Integer.parseInt(request.getParameter("edizione"));
                 try{
                     dao.doModifyEdizione(bean, edizione);
@@ -70,6 +86,10 @@ public class ModificaProdottoController extends HttpServlet {
             }
             case "modifyCasa":{
                 String casa = request.getParameter("casa");
+                if(casa == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 try{
                     dao.doModifyCasaEditrice(bean, casa);
                 } catch (SQLException e){
@@ -79,6 +99,10 @@ public class ModificaProdottoController extends HttpServlet {
             }
             case "modifyCopertina":{
                 String copertina = request.getParameter("copertina");
+                if(copertina == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 try{
                     dao.doModifyCopertina(bean,copertina);
                 } catch (SQLException e){
@@ -87,6 +111,10 @@ public class ModificaProdottoController extends HttpServlet {
                 break;
             }
             case "modifyPrezzo":{
+                if(request.getParameter("prezzo") == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 double prezzo = Double.parseDouble(request.getParameter("prezzo"));
                 try{
                     dao.doModifyPrezzo(bean, prezzo);

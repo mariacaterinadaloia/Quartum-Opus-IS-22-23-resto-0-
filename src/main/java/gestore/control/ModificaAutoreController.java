@@ -35,6 +35,10 @@ public class ModificaAutoreController extends HttpServlet {
         switch (action){
             case "modificaNome": {
                 String nome = request.getParameter("name");
+                if(nome == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 try{
                     dao.doModifyNome(bean, nome);
                 } catch(SQLException e){
@@ -44,6 +48,10 @@ public class ModificaAutoreController extends HttpServlet {
             }
             case "modificaCognome": {
                 String cognome = request.getParameter("surname");
+                if(cognome == null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 try{
                     dao.doModifyCognome(bean, cognome);
                 } catch(SQLException e){
@@ -53,7 +61,12 @@ public class ModificaAutoreController extends HttpServlet {
             }
             case "modificaData": {
                 String d = request.getParameter("birthdate");
+                if(d==null){
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
                 LocalDate data = LocalDate.parse(d);
+
                 try{
                     dao.doModifyDataNascita(bean, Date.from(data.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 
