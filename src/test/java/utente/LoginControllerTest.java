@@ -55,7 +55,7 @@ public class LoginControllerTest {
             PrintWriter out = Mockito.mock(PrintWriter.class);
             ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 
-            Mockito.when(request.getParameter("username")).thenReturn(username);
+            Mockito.when(request.getParameter("email")).thenReturn(username);
             Mockito.when(request.getParameter("password")).thenReturn(password);
             Mockito.when(response.getWriter()).thenReturn(out);
 
@@ -74,7 +74,7 @@ public class LoginControllerTest {
             PrintWriter out = Mockito.mock(PrintWriter.class);
             ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 
-            Mockito.when(request.getParameter("username")).thenReturn(username);
+            Mockito.when(request.getParameter("email")).thenReturn(username);
             Mockito.when(request.getParameter("password")).thenReturn(password);
             Mockito.when(response.getWriter()).thenReturn(out);
 
@@ -94,7 +94,7 @@ public class LoginControllerTest {
             PrintWriter out = Mockito.mock(PrintWriter.class);
             ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 
-            Mockito.when(request.getParameter("username")).thenReturn(username);
+            Mockito.when(request.getParameter("email")).thenReturn(username);
             Mockito.when(request.getParameter("password")).thenReturn(password);
             Mockito.when(response.getWriter()).thenReturn(out);
 
@@ -102,9 +102,7 @@ public class LoginControllerTest {
 
 
              Mockito.verify(out).print(argument.capture());
-            assertEquals("Username non valido.", argument.getValue());
-
-
+            assertEquals("User non valido.", argument.getValue());
         }
 }
 

@@ -21,7 +21,7 @@ public class ModificaProdottoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        String codice = request.getParameter("codice");
+        Long codice = Long.parseLong(request.getParameter("codice"));
         ProdottoDAO dao = new ProdottoDAO();
         ProdottoBean bean = new ProdottoBean();
 

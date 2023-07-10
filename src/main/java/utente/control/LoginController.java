@@ -30,6 +30,7 @@ public class LoginController extends HttpServlet {
         if(email == null || password == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errore nei parametri della richiesta");
         } else if (!checkEmail(email)) {
+            out.print("User non valido.");
             request.setAttribute("error", true);
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         } else if(checkLogin(email, password)){
