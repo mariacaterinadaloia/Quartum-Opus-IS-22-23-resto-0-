@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String error = (String) request.getAttribute("errorSignup");
+    String error = (String) request.getSession().getAttribute("errorSignup");
     %>
 <html>
 <head>
