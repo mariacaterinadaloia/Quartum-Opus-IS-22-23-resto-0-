@@ -144,9 +144,8 @@ public class RecDiDAO implements DAO<RecDiBean> {
             ps=con.prepareStatement(query);
             ps.setInt(2, recDaBean.getRecensione());
             ps.setLong(1, recDaBean.getProdotto());
-            ResultSet rs= ps.executeQuery();
+            ps.execute();
 
-            rs.close();
         }finally {
             try {
                 if (ps != null) ps.close();
@@ -154,5 +153,37 @@ public class RecDiDAO implements DAO<RecDiBean> {
                 DriverManagerConnectionPool.releaseConnection(con);
             }
         }
+    }
+
+    public ArrayList<RecDiBean> doRetrieveByProduct(long key) throws SQLException{
+        Connection con=null;
+        PreparedStatement ps=null;
+        String query= "select * from "+RecDiDAO.TABLE_NAME+" where prodotto = ?";
+        ArrayList<RecDiBean> ab = new ArrayList<RecDiBean>();
+
+
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            ps = con.prepareStatement(query);
+            ps.setLong(1, key);
+            ResultSet rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                RecDiBean b=new RecDiBean();
+                b.setProdotto(rs.getLong("prodotto"));
+                b.setRecensione(rs.getInt("recensione"));
+                ab.add(b);
+            }
+            rs.close();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+
+        }
+        return ab;
     }
 }

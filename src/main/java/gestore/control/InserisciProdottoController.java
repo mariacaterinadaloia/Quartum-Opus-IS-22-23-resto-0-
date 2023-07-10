@@ -1,0 +1,64 @@
+package gestore.control;
+
+import gestore.model.ProdottoBean;
+import gestore.model.ProdottoDAO;
+import gestore.model.ScrittoDaBean;
+import gestore.model.ScrittoDaDAO;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+@WebServlet(name = "InserisciProdottoController", value = "/InserisciProdottoController")
+public class InserisciProdottoController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long ISBN = Long.parseLong(request.getParameter("isbn"));
+        String nome = request.getParameter("nome");
+        String genere = request.getParameter("genere");
+        int anno = Integer.parseInt(request.getParameter("anno"));
+        int edizione = Integer.parseInt(request.getParameter("edizione"));
+        String copertina = request.getParameter("copertina");
+        String casaEditrice = request.getParameter("casa");
+        double prezzo = Double.parseDouble(request.getParameter("prezzo"));
+        String codiceAutore = request.getParameter("codiceAutore");
+
+        ProdottoBean bean = new ProdottoBean();
+        bean.setISBN(ISBN);
+        bean.setNome(nome);
+        bean.setGenere(genere);
+        bean.setAnno(anno);
+        bean.setEdizione(edizione);
+        bean.setCopertina(copertina);
+        bean.setCasaEditrice(casaEditrice);
+        bean.setPrezzo(prezzo);
+        bean.setAcquistabile(true);
+
+        ProdottoDAO pdao = new ProdottoDAO();
+        try{
+            pdao.doInsert(bean);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        ScrittoDaDAO sdao = new ScrittoDaDAO();
+        ScrittoDaBean sbean = new ScrittoDaBean();
+        sbean.setProdotto(ISBN);
+        sbean.setAutore(codiceAutore);
+        try{
+            sdao.doInsert(sbean);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/CatalogoAdminController");
+        dispatcher.forward(request, response);
+    }
+}

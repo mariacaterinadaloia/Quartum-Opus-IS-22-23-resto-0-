@@ -22,7 +22,8 @@
 
 </head>
 <body>
-<div class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top footer mt-auto">
+<footer class="mt-auto">
+<div class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top footer">
     <p class="col-md-4 mb-0" style="color:black;">© QuartumOpus 2023, tutti i diritti riservati</p>
 
     <a href="index.jsp" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -36,5 +37,6 @@
 
     </ul>
 </div>
+</footer>
 </body>
 </html>

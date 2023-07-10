@@ -64,7 +64,7 @@ public class RecDaDAO implements DAO<RecDaBean> {
 
 
             while (rs.next()) {
-                b.setUtente(rs.getString("mail"));
+                b.setUtente(rs.getString("utente"));
                 b.setRecensione(rs.getInt("recensione"));
             }
             rs.close();
@@ -146,9 +146,8 @@ public class RecDaDAO implements DAO<RecDaBean> {
             ps=con.prepareStatement(query);
             ps.setInt(2, recDaBean.getRecensione());
             ps.setString(1, recDaBean.getUtente());
-            ResultSet rs= ps.executeQuery();
+            ps.execute();
 
-            rs.close();
         }finally {
             try {
                 if(ps!=null) ps.close();

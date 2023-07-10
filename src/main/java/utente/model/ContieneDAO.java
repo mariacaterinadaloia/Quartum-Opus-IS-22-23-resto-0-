@@ -2,11 +2,10 @@ package utente.model;
 
 import connection.DriverManagerConnectionPool;
 import generic.DAO;
+import gestore.model.OrdineBean;
+import gestore.model.OrdineDAO;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ContieneDAO implements DAO<ContieneBean> {
@@ -20,7 +19,7 @@ public class ContieneDAO implements DAO<ContieneBean> {
 
     @Override
     public ContieneBean doRetrieveByKey(Object key) throws SQLException {
-        return null;
+       return null;
     }
 
     @Override
@@ -54,5 +53,38 @@ public class ContieneDAO implements DAO<ContieneBean> {
                 DriverManagerConnectionPool.releaseConnection(con);
             }
         }
+    }
+
+    public ArrayList<ContieneBean> doRetrieveByOrderId(int id) throws SQLException{
+        Connection con=null;
+        PreparedStatement ps=null;
+        String query= "select * from "+ ContieneDAO.TABLE_NAME+" where ordine = ?";
+        ArrayList<ContieneBean> ab = new ArrayList<ContieneBean>();
+
+
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+
+
+            ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ContieneBean b=new ContieneBean();
+                b.setOrdine(rs.getInt("ordine"));
+                b.setProdotto(rs.getLong("prodotto"));
+                ab.add(b);
+            }
+            rs.close();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+
+        }
+        return ab;
     }
 }

@@ -67,4 +67,121 @@
         <url-pattern>/CarrelloController</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CatalogoGenereController</servlet-name>
+        <servlet-class>utente.control.CatalogoGenereController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CatalogoGenereController</servlet-name>
+        <url-pattern>/CatalogoGenereController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VisualizzaOrdiniController</servlet-name>
+        <servlet-class>utente.control.VisualizzaOrdiniController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VisualizzaOrdiniController</servlet-name>
+        <url-pattern>/VisualizzaOrdiniController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VisualizzaDettaglioOrdineController</servlet-name>
+        <servlet-class>utente.control.VisualizzaDettaglioOrdineController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VisualizzaDettaglioOrdineController</servlet-name>
+        <url-pattern>/VisualizzaDettaglioOrdineController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrdiniController</servlet-name>
+        <servlet-class>gestore.control.OrdiniController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrdiniController</servlet-name>
+        <url-pattern>/OrdiniController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AutoriController</servlet-name>
+        <servlet-class>gestore.control.AutoriController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoriController</servlet-name>
+        <url-pattern>/AutoriController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InserisciAutoreController</servlet-name>
+        <servlet-class>gestore.control.InserisciAutoreController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InserisciAutoreController</servlet-name>
+        <url-pattern>/InserisciAutoreController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ModificaAutoreController</servlet-name>
+        <servlet-class>gestore.control.ModificaAutoreController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModificaAutoreController</servlet-name>
+        <url-pattern>/ModificaAutoreController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CatalogoAdminController</servlet-name>
+        <servlet-class>gestore.control.CatalogoAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CatalogoAdminController</servlet-name>
+        <url-pattern>/CatalogoAdminController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EliminaProdottoController</servlet-name>
+        <servlet-class>gestore.control.EliminaProdottoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EliminaProdottoController</servlet-name>
+        <url-pattern>/EliminaProdottoController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InserisciProdottoController</servlet-name>
+        <servlet-class>gestore.control.InserisciProdottoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InserisciProdottoController</servlet-name>
+        <url-pattern>/InserisciProdottoController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AutoriListController</servlet-name>
+        <servlet-class>gestore.control.AutoriListController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AutoriListController</servlet-name>
+        <url-pattern>/AutoriListController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ModificaProdottoController</servlet-name>
+        <servlet-class>gestore.control.ModificaProdottoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModificaProdottoController</servlet-name>
+        <url-pattern>/ModificaProdottoController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InserisciRecensioneController</servlet-name>
+        <servlet-class>utente.control.InserisciRecensioneController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InserisciRecensioneController</servlet-name>
+        <url-pattern>/InserisciRecensioneController</url-pattern>
+    </servlet-mapping>
+
 </web-app>

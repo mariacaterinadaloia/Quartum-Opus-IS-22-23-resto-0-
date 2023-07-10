@@ -1,4 +1,4 @@
-<%@ page import="utente.model.ProdottoBean" %>
+<%@ page import="gestore.model.ProdottoBean" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.text.DecimalFormat" %><%--
@@ -59,7 +59,7 @@
                     </a>
                     <div class="card-body border mt-n1 py-4 text-center">
                         <h2 class="h5 mb-1"><%=bean.getNome() %></h2>
-                        <span class="d-block mb-3 font-size-xs text-muted"><%=bean.getCasa_editrice() %></span
+                        <span class="d-block mb-3 font-size-xs text-muted"><%=bean.getCasaEditrice() %></span
                         ><span class="font-weight-semibold"><%=df.format(prezzo)%>€</span>
                         <br/><br/>
                         <span><a class="btn btn-pill btn-outline-primary btn-sm" href="./ProductPageController?ISBN=<%=bean.getISBN()%>">Visualizza</a></span>

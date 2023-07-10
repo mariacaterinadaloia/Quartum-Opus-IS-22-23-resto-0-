@@ -1,12 +1,11 @@
-<%@ page import="utente.model.UtenteBean" %><%--
-  Created by IntelliJ IDEA.
-  User: MAURIZIO
-  Date: 28/02/2023
-  Time: 13:51
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="gestore.model.OrdineBean" %>
+<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="utente.model.UtenteBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    Collection<OrdineBean> ordini = (Collection<OrdineBean>) request.getAttribute("ordini");
+
     UtenteBean user = (UtenteBean) request.getSession().getAttribute("user");
     if (user == null || !user.isGestore()) {
         response.sendError(response.SC_FORBIDDEN, "Non sei admin!");
@@ -45,18 +44,18 @@
                     </li>
 
                     <li>
-                        <a href="./OrdiniController" class="nav-link px-0 align-middle">
+                        <a href="./VisualizzaOrdiniAdminServlet" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Ordini</span></a>
                     </li>
                     <li>
-                        <a href="./CatalogoAdminController" class="nav-link px-0 align-middle ">
+                        <a href="./CatalogoServlet" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-card-list"></i> <span class="ms-1 d-none d-sm-inline">Modifica catalogo</span></a>
 
                     </li>
 
                     <li>
-                        <a href="./AutoriController" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Modifica autori</span> </a>
+                        <a href="./UtentiServlet" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Visualizza clienti</span> </a>
                     </li>
                 </ul>
                 <hr>
@@ -64,9 +63,37 @@
             </div>
         </div>
         <div class="col py-3">
-            <h3>Benvenuto nell'area admin</h3>
-            <p class="lead">
-                Da qui potrai modificare, inserire o eliminare prodotti dal catalogo, visualizzare gli ordini del sito ed i clienti registrati</p>
+            <div class="card m-auto">
+                <div class="card-header">Ordini effettuati</div>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID Ordine</th>
+                        <th>Data</th>
+                        <th>Mail utente</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <%
+                        Iterator<OrdineBean> i= ordini.iterator();
+                        while(i.hasNext()){
+                            OrdineBean ordine = i.next();
+                    %>
+                    <tr>
+                        <td><%=ordine.getId() %></td>
+                        <td><%=ordine.getData()%></td>
+                        <td><%=ordine.getUtente()%></td>
+                    </tr>
+                    <%} %>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
 
         </div>
     </div>

@@ -36,6 +36,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setCopertina(rs.getString("copertina"));
                 b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setPrezzo(rs.getDouble("prezzo"));
+                b.setAcquistabile(rs.getBoolean("acquistabile"));
                 ab.add(b);
             }
             rs.close();
@@ -74,6 +75,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setCopertina(rs.getString("copertina"));
                 b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setPrezzo(rs.getDouble("prezzo"));
+                b.setAcquistabile(rs.getBoolean("acquistabile"));
             }
             rs.close();
         }finally {
@@ -90,7 +92,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
     @Override
     public void doDeleteByKey(Object key) throws SQLException {
         Long ISBN = (Long) key;
-        String query="delete from"+ProdottoDAO.TABLE_NAME+"where ISBN=?";
+        String query="delete from "+ProdottoDAO.TABLE_NAME+" where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
 
@@ -114,7 +116,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
 
     @Override
     public void doInsert(ProdottoBean prodottoBean) throws SQLException {
-        String query="Insert into "+ ProdottoDAO.TABLE_NAME+" values(?,?,?,?,?,?,?)";
+        String query="Insert into "+ ProdottoDAO.TABLE_NAME+" values(?,?,?,?,?,?,?,?,?)";
         Connection con=null;
         PreparedStatement ps=null;
 
@@ -124,11 +126,14 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
             ps=con.prepareStatement(query);
             ps.setLong(1, prodottoBean.getISBN());
             ps.setString(2, prodottoBean.getNome());
-            ps.setString(3, prodottoBean.getGenere().toUpperCase());
+            ps.setString(3, prodottoBean.getGenere().toLowerCase());
             ps.setInt(4, prodottoBean.getAnno());
             ps.setInt(5, prodottoBean.getEdizione());
             ps.setString(6, prodottoBean.getCasaEditrice());
             ps.setString(7, prodottoBean.getCopertina());
+            ps.setDouble(8, prodottoBean.getPrezzo());
+            ps.setBoolean(9, prodottoBean.isAcquistabile());
+
             ps.execute();
 
 
@@ -146,7 +151,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set ISBN=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setISBN(ISBN);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -168,7 +173,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set nome=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setNome(nome);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -189,13 +194,13 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set genere=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setGenere(genere);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
             ps=con.prepareStatement(query);
             ps.setLong(2, prodottoBean.getISBN());
-            ps.setString(1, genere.toUpperCase());
+            ps.setString(1, genere.toLowerCase());
             ps.execute();
         }finally {
             try {
@@ -210,7 +215,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set anno=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setAnno(anno);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -231,7 +236,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set edizione=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setEdizione(edizione);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -252,7 +257,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set casa_editrice=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setCasaEditrice(casaEditrice);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -274,7 +279,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set copertina=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setCopertina(copertina);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -295,7 +300,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         String query="update "+ ProdottoDAO.TABLE_NAME+" set prezzo=? where ISBN=?";
         Connection con=null;
         PreparedStatement ps=null;
-        prodottoBean.setPrezzo(prezzo);
+
         try {
             con= DriverManagerConnectionPool.getConnection();
 
@@ -315,14 +320,14 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
     public ArrayList<ProdottoBean> doRetrieveByGenre(String genre) throws SQLException {
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "select * from "+ ProdottoDAO.TABLE_NAME+" where genere = ";
+        String query= "select * from "+ ProdottoDAO.TABLE_NAME+" where genere = ?";
         ArrayList<ProdottoBean> ab = new ArrayList<ProdottoBean>();
 
 
         try {
             con = DriverManagerConnectionPool.getConnection();
             ps=con.prepareStatement(query);
-            ps.setString(1, genre.toUpperCase());
+            ps.setString(1, genre.toLowerCase());
             ps.execute();
             ResultSet rs= ps.executeQuery();
 
@@ -386,6 +391,31 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
 
         }
         return b;
+    }
+
+    public void doModifyAcquistabile(ProdottoBean prodottoBean) throws SQLException {
+        String query="update "+ ProdottoDAO.TABLE_NAME+" set acquistabile=? where ISBN=?";
+        Connection con=null;
+        PreparedStatement ps=null;
+        Boolean acquistabile = false;
+        if(!prodottoBean.isAcquistabile())
+            acquistabile=true;
+
+
+        try {
+            con= DriverManagerConnectionPool.getConnection();
+
+            ps=con.prepareStatement(query);
+            ps.setLong(2, prodottoBean.getISBN());
+            ps.setBoolean(1, acquistabile);
+            ps.execute();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            }finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
     }
 
 }

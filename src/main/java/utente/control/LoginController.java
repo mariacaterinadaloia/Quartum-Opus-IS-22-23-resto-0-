@@ -29,8 +29,10 @@ public class LoginController extends HttpServlet {
         System.out.println(password);
         if(email == null || password == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Errore nei parametri della richiesta");
-        }
-        else if(checkLogin(email, password)){
+        } else if (!checkEmail(email)) {
+            request.setAttribute("error", true);
+            request.getRequestDispatcher("/login.jsp").forward(request,response);
+        } else if(checkLogin(email, password)){
             request.getSession().setAttribute("user", user);
             out.print("Login effettuato con successo.");
             response.sendRedirect(response.encodeURL(request.getContextPath() + "/index.jsp"));
@@ -49,6 +51,18 @@ public class LoginController extends HttpServlet {
             user = dao.doRetrieveByKey(email);
             System.out.println(user.getNome());
             if(user.getPassword().equals(password))
+                return true;
+        } catch (SQLException e){
+            return false;
+        }
+        return false;
+    }
+
+    private boolean checkEmail(String email){
+        UtenteDAO dao = new UtenteDAO();
+        try{
+            user = dao.doRetrieveByKey(email);
+            if(user != null)
                 return true;
         } catch (SQLException e){
             return false;

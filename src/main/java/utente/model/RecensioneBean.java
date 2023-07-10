@@ -15,6 +15,10 @@ public class RecensioneBean implements Bean{
     private int idRecensione;
     private String text;
 
+    private String nome;
+
+    private String cognome;
+
     public int getIdRecensione() {
         return idRecensione;
     }
@@ -29,5 +33,21 @@ public class RecensioneBean implements Bean{
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 }

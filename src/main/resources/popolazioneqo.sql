@@ -88,11 +88,11 @@ insert into contiene values (3, 98483645);
     foreign key(prodotto) references prodotto(ISBN),
     text varchar(1024) not null
 ); */
-insert into recensione values (100, 'bel libro');
-insert into recensione values (111, 'bel libro');
+insert into recensione values (1, 'bel libro');
+insert into recensione values (2, 'bel libro');
 
-insert into recDi values (100,2844872);
-insert into recDi values (111,98483645);
+insert into recDi values (2844872, 1);
+insert into recDi values (98483645, 2);
 
-insert into recDa values (100,'catedal@gmail.com');
-insert into recDa values (111,'catedal@gmail.com');
+insert into recDa values ('catedal@gmail.com', 1);
+insert into recDa values ('catedal@gmail.com', 2);

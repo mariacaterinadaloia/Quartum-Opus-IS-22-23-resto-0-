@@ -2,6 +2,7 @@ package utente.model;
 
 import connection.DriverManagerConnectionPool;
 import generic.DAO;
+import gestore.model.OrdineDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -135,18 +136,17 @@ public class RecensioneDAO implements DAO<RecensioneBean> {
     public void doInsert(RecensioneBean recensioneBean) throws SQLException {
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "insert into "+RecensioneDAO.TABLE_NAME+" values (?,?)";
+        String query= "insert into "+RecensioneDAO.TABLE_NAME+" (text) values (?)";
 
 
         try {
             con = DriverManagerConnectionPool.getConnection();
 
             ps=con.prepareStatement(query);
-            ps.setInt(1, recensioneBean.getIdRecensione());
-            ps.setString(2, recensioneBean.getText());
-            ResultSet rs= ps.executeQuery();
 
-            rs.close();
+            ps.setString(1, recensioneBean.getText());
+            ps.execute();
+
         }finally {
             try {
                 if(ps!=null) ps.close();
@@ -155,5 +155,33 @@ public class RecensioneDAO implements DAO<RecensioneBean> {
             }
 
         }
+    }
+
+    public int doGetLatestId() throws SQLException{
+        Connection con=null;
+        PreparedStatement ps=null;
+        String query= "SELECT MAX(idRecensione) FROM "+ RecensioneDAO.TABLE_NAME;
+        int result=0;
+
+        try {
+            con= DriverManagerConnectionPool.getConnection();
+
+            ps=con.prepareStatement(query);
+
+            ResultSet rs= ps.executeQuery();
+
+            while(rs.next()) {
+                result=rs.getInt("MAX(idRecensione)");
+            }
+            rs.close();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            }finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+
+        }
+        return result;
     }
 }

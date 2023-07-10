@@ -1,7 +1,7 @@
 <%@ page import="utente.model.Carrello" %>
 <%@ page import="utente.model.UtenteBean" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="utente.model.ProdottoBean" %>
+<%@ page import="gestore.model.ProdottoBean" %>
 <%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: Francesca

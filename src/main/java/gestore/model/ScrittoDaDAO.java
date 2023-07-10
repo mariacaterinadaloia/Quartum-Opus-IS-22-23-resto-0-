@@ -110,9 +110,10 @@ public class ScrittoDaDAO implements DAO<ScrittoDaBean> {
 
         try {
             con= DriverManagerConnectionPool.getConnection();
+            ps=con.prepareStatement(query);
             ps.setLong(1, scrittoDaBean.getProdotto());
             ps.setString(2, scrittoDaBean.getAutore());
-            ps=con.prepareStatement(query);
+
 
 
             ps.execute();

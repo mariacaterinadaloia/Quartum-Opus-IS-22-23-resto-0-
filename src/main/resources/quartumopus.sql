@@ -47,8 +47,8 @@ create table prodotto(
 create table scritto_da(
 	prodotto bigint not null, 
     autore varchar(16) not null, 
-    foreign key(autore) references autore(codice), 
-    foreign key(prodotto) references prodotto(ISBN)
+    foreign key(autore) references autore(codice) ON DELETE CASCADE ON UPDATE CASCADE,
+    foreign key(prodotto) references prodotto(ISBN) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table contiene(
@@ -59,7 +59,7 @@ create table contiene(
 );
 
 create table  recensione(
-    idRecensione int not null primary key,
+    idRecensione int not null primary key auto_increment,
     text varchar(1024) not null
 );
 

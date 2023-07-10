@@ -196,7 +196,7 @@ public class AutoreDAO implements DAO<AutoreBean> {
     }
 
     public void doModifyDataNascita(AutoreBean autoreBean, Date date) throws SQLException{
-        String query="update "+ AutoreDAO.TABLE_NAME+" set date=? where codice=?";
+        String query="update "+ AutoreDAO.TABLE_NAME+" set datanascita=? where codice=?";
         Connection con=null;
         PreparedStatement ps=null;
         autoreBean.setDatanascita(date);

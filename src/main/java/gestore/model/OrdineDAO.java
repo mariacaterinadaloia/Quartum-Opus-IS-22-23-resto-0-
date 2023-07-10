@@ -5,6 +5,7 @@ import generic.DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class OrdineDAO implements DAO<OrdineBean> {
     private static final String TABLE_NAME = "ordine";
@@ -167,6 +168,40 @@ public class OrdineDAO implements DAO<OrdineBean> {
 
         }
         return result;
+    }
+
+    public ArrayList<OrdineBean> doRetrieveByUser(String email) throws SQLException{
+        Connection con=null;
+        PreparedStatement ps=null;
+        String query= "select * from "+OrdineDAO.TABLE_NAME+" where utente = ?";
+        ArrayList<OrdineBean> ab = new ArrayList<OrdineBean>();
+
+
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+
+
+            ps = con.prepareStatement(query);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                OrdineBean b=new OrdineBean();
+                b.setId(rs.getInt("id"));
+                b.setData(new java.util.Date(rs.getDate("data").getTime()));
+                b.setUtente(rs.getString("utente"));
+                ab.add(b);
+            }
+            rs.close();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+
+        }
+        return ab;
     }
 
 
