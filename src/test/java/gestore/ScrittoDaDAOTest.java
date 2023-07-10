@@ -1,23 +1,20 @@
 package gestore;
 
 import gestore.model.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Calendar;
 import java.util.Date;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ScrittoDaDAOTest {
     ScrittoDaDAO dao = new ScrittoDaDAO();
     ScrittoDaBean bean = new ScrittoDaBean();
+    AutoreDAO ad = new AutoreDAO();;
+    AutoreBean ab = new AutoreBean();
 
-
-    @BeforeEach
+    @BeforeAll
     public void setUp() throws Exception {
-        AutoreDAO ad = new AutoreDAO();;
-        AutoreBean ab = new AutoreBean();
+
         ab.setCodice("test01");
         ab.setCognome("D'Aloia");
         ab.setNome("Cate");
@@ -28,9 +25,10 @@ public class ScrittoDaDAOTest {
         dao.doInsert(bean);
     }
 
-    @AfterEach
+    @AfterAll
     public void tearDown() throws Exception {
         dao.doDeleteByKey(bean.getProdotto());
+        ad.doDeleteByKey(ab.getCodice());
     }
 
     @Test

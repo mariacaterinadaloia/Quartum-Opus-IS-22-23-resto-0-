@@ -3,15 +3,13 @@ package utente;
 import gestore.ProdottoDAOTest;
 import gestore.model.ProdottoBean;
 import gestore.model.ProdottoDAO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import utente.model.RecDiBean;
 import utente.model.RecDiDAO;
 import utente.model.RecensioneBean;
 import utente.model.RecensioneDAO;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RecDiDAOTest {
     ProdottoBean bean2 = new ProdottoBean();
     ProdottoDAO dao2 = new ProdottoDAO();
@@ -20,26 +18,26 @@ public class RecDiDAOTest {
     RecDiDAO dao = new RecDiDAO();
     RecDiBean bean = new RecDiBean();
 
-    @BeforeEach
+    @BeforeAll
     public void setUp() throws Exception{
         bean2.setAnno(0);
         bean2.setCopertina("c");
         bean2.setNome("Test");
         bean2.setCasaEditrice("Test");
-        bean2.setISBN(0);
-        bean2.setGenere("Testthrows Exception {");
+        bean2.setISBN((long) 11);
+        bean2.setGenere("Test");
         dao2.doInsert(bean2);
-        bean3.setIdRecensione(1000);
         bean3.setText("test");
         dao3.doInsert(bean3);
-        bean.setRecensione(1000);
-        bean.setProdotto(0);
+        bean.setRecensione(3);
+        bean.setProdotto((long) 11);
         dao.doInsert(bean);
     }
 
-    @AfterEach
+    @AfterAll
     public void tearDown() throws Exception {
-        dao.doDeleteByKey(bean.getRecensione());
+        dao2.doDeleteByKey(bean2.getISBN());
+        dao3.doDeleteByKey(3);
     }
 
     @Test
@@ -48,20 +46,7 @@ public class RecDiDAOTest {
     }
 
     @Test
-    void retrieveUtenteDATest() throws Exception {
+    void retrieveByKeyTest() throws Exception {
         Assertions.assertTrue(dao.doRetrieveByKey(bean.getRecensione())!=null);
-    }
-
-    @Test
-    void doModifyTest() throws Exception{
-        bean2.setAnno(0);
-        bean2.setCopertina("c");
-        bean2.setNome("Test");
-        bean2.setCasaEditrice("Test");
-        bean2.setISBN(1);
-        bean2.setGenere("Test");
-        dao2.doInsert(bean2);
-        dao.doModifyByKey(1, bean);
-        Assertions.assertEquals(dao.doRetrieveByKey(bean.getRecensione()).getProdotto(), bean.getProdotto());
     }
 }

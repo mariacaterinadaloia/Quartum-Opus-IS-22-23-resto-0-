@@ -1,9 +1,6 @@
 package gestore;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import gestore.model.OrdineBean;
 import gestore.model.OrdineDAO;
 import utente.model.UtenteBean;
@@ -11,14 +8,14 @@ import utente.model.UtenteDAO;
 
 import java.util.Calendar;
 import java.util.Date;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class OrdineDAOTest {
     OrdineDAO dao = new OrdineDAO();
     OrdineBean bean = new OrdineBean();
 
     UtenteDAO dao1 = new UtenteDAO();
     UtenteBean bean1 = new UtenteBean();
-    @BeforeEach
+    @BeforeAll
     public void setUp() throws Exception {
         bean1.setCognome("Test");
         bean1.setDatadinascita(Calendar.getInstance().getTime());
@@ -33,9 +30,10 @@ public class OrdineDAOTest {
         bean.setData(Calendar.getInstance().getTime());
     }
 
-    @AfterEach
+    @AfterAll
     public void tearDown() throws Exception {
         dao.doDeleteByKey(bean.getId());
+        dao1.doDeleteByKey(bean1.getMail());
     }
 
     @Test

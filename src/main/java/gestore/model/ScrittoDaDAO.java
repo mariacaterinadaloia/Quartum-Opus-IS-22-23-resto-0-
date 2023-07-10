@@ -78,7 +78,7 @@ public class ScrittoDaDAO implements DAO<ScrittoDaBean> {
     @Override
     public void doDeleteByKey(Object key) throws SQLException {
         Long prodotto = (Long) key;
-        String query="delete from"+ScrittoDaDAO.TABLE_NAME+" where prodotto=?";
+        String query="delete from "+ScrittoDaDAO.TABLE_NAME+" where prodotto=?";
         Connection con=null;
         PreparedStatement ps=null;
 

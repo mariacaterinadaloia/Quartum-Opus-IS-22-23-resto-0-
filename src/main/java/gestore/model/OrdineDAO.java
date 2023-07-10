@@ -77,7 +77,7 @@ public class OrdineDAO implements DAO<OrdineBean> {
     @Override
     public void doDeleteByKey(Object key) throws SQLException {
         Integer id= (Integer) key;
-        String query="delete from"+OrdineDAO.TABLE_NAME+" where id=?";
+        String query="delete from "+OrdineDAO.TABLE_NAME+" where id=?";
         Connection con=null;
         PreparedStatement ps=null;
 

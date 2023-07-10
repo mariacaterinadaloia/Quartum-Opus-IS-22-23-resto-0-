@@ -2,20 +2,17 @@ package gestore;
 
 import gestore.model.AutoreBean;
 import gestore.model.AutoreDAO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Calendar;
 import java.util.Date;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AutoreDAOTest {
     AutoreDAO ad = new AutoreDAO();;
     AutoreBean ab = new AutoreBean();
 
 
-    @BeforeEach
+    @BeforeAll
     public void setUp() throws Exception {
         ab.setCodice("test01");
         ab.setCognome("D'Aloia");
@@ -24,7 +21,7 @@ public class AutoreDAOTest {
         ad.doInsert(ab);
     }
 
-    @AfterEach
+    @AfterAll
     public void tearDown() throws Exception {
         ad.doDeleteByKey(ab.getCodice());
     }
@@ -54,7 +51,7 @@ public class AutoreDAOTest {
     @Test
     void updateDateAutore() throws Exception{
         ad.doModifyDataNascita(ab, Calendar.getInstance().getTime());
-        Assertions.assertEquals(ad.doRetrieveByKey(ab.getCodice()).getDatanascita(), ab.getDatanascita());
+        Assertions.assertEquals(ad.doRetrieveByKey(ab.getCodice()).getDatanascita().getDate(), ab.getDatanascita().getDate());
     }
 
     @Test

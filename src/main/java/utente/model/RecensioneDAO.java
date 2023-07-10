@@ -92,9 +92,7 @@ public class RecensioneDAO implements DAO<RecensioneBean> {
 
             ps=con.prepareStatement(query);
             ps.setInt(1, id);
-            ResultSet rs= ps.executeQuery();
-
-            rs.close();
+            ps.execute();
         }finally {
             try {
                 if(ps!=null) ps.close();
@@ -110,7 +108,7 @@ public class RecensioneDAO implements DAO<RecensioneBean> {
         Integer id = (Integer) key;
         Connection con=null;
         PreparedStatement ps=null;
-        String query= "update "+RecensioneDAO.TABLE_NAME+" set text = ? where recensione = ?";
+        String query= "update "+RecensioneDAO.TABLE_NAME+" set text = ? where idRecensione = ?";
 
 
         try {
@@ -119,9 +117,7 @@ public class RecensioneDAO implements DAO<RecensioneBean> {
             ps=con.prepareStatement(query);
             ps.setInt(2, id);
             ps.setString(1, recensioneBean.getText());
-            ResultSet rs= ps.executeQuery();
-
-            rs.close();
+            ps.execute();
         }finally {
             try {
                 if(ps!=null) ps.close();
@@ -143,7 +139,7 @@ public class RecensioneDAO implements DAO<RecensioneBean> {
             con = DriverManagerConnectionPool.getConnection();
 
             ps=con.prepareStatement(query);
-
+            //ps.setInt(1, recensioneBean.setText());
             ps.setString(1, recensioneBean.getText());
             ps.execute();
 

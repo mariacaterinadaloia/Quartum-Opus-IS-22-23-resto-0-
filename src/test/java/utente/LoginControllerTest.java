@@ -64,9 +64,6 @@ public class LoginControllerTest {
 
             Mockito.verify(out).print(argument.capture());
             assertEquals("Login effettuato con successo.", argument.getValue());
-
-
-
         }
 
         @Test
@@ -104,7 +101,7 @@ public class LoginControllerTest {
             servlet.doPost(request, response);
 
 
-            Mockito.verify(out).print(argument.capture());
+             Mockito.verify(out).print(argument.capture());
             assertEquals("Username non valido.", argument.getValue());
 
 

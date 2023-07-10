@@ -40,6 +40,7 @@ create table prodotto(
     copertina varchar(512),
     prezzo double not null,
     acquistabile bool not null,
+    link varchar(512),
     primary key(ISBN)
 ); 
 
@@ -53,9 +54,9 @@ create table scritto_da(
 
 create table contiene(
 	ordine int not null, 
-    foreign key(ordine) references ordine(id),
+    foreign key(ordine) references ordine(id) ON DELETE CASCADE ON UPDATE CASCADE,
     prodotto bigint not null, 
-	foreign key(prodotto) references prodotto(ISBN)
+	foreign key(prodotto) references prodotto(ISBN) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table  recensione(
@@ -65,14 +66,14 @@ create table  recensione(
 
 create table recDa(
     utente varchar(256) not null,
-    foreign key(utente) references utente(mail),
+    foreign key(utente) references utente(mail) ON DELETE CASCADE ON UPDATE CASCADE,
     recensione int not null,
-    foreign key(recensione) references recensione(idRecensione)
+    foreign key(recensione) references recensione(idRecensione) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table recDi(
     prodotto bigint not null,
-    foreign key(prodotto) references prodotto(ISBN),
+    foreign key(prodotto) references prodotto(ISBN) ON DELETE CASCADE ON UPDATE CASCADE,
     recensione int not null,
-    foreign key(recensione) references recensione(idRecensione)
+    foreign key(recensione) references recensione(idRecensione) ON DELETE CASCADE ON UPDATE CASCADE
 );

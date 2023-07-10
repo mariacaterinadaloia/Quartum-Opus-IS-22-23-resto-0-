@@ -1,23 +1,20 @@
 package utente;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import utente.model.RecensioneBean;
 import utente.model.RecensioneDAO;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RecensioneDAOTest {
     RecensioneDAO dao = new RecensioneDAO();
     RecensioneBean bean = new RecensioneBean();
-    @BeforeEach
+    @BeforeAll
     public void setUp() throws Exception{
-        bean.setIdRecensione(1000);
+        bean.setIdRecensione(3);
         bean.setText("test");
         dao.doInsert(bean);
     }
 
-    @AfterEach
+    @AfterAll
     public void tearDown() throws Exception {
         dao.doDeleteByKey(bean.getIdRecensione());
     }
@@ -34,7 +31,9 @@ public class RecensioneDAOTest {
 
     @Test
     void doModifyTest() throws Exception{
-        dao.doModifyByKey("NewPass", bean);
+        bean.setText("ca bello");
+        System.out.println(dao.doRetrieveByKey(bean.getIdRecensione()).getText() );
+        dao.doModifyByKey(bean.getIdRecensione(), bean);
         Assertions.assertEquals(dao.doRetrieveByKey(bean.getIdRecensione()).getText(), bean.getText());
     }
 }

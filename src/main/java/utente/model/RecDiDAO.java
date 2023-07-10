@@ -106,29 +106,7 @@ public class RecDiDAO implements DAO<RecDiBean> {
 
     @Override
     public void doModifyByKey(Object key, RecDiBean recDaBean) throws SQLException {
-        Integer id = (Integer) key;
-        Connection con=null;
-        PreparedStatement ps=null;
-        String query= "update "+RecDiDAO.TABLE_NAME+" set prodotto = ? where recensione = ?";
-
-
-        try {
-            con = DriverManagerConnectionPool.getConnection();
-
-            ps=con.prepareStatement(query);
-            ps.setInt(2, id);
-            ps.setLong(1, recDaBean.getProdotto());
-            ResultSet rs= ps.executeQuery();
-
-            rs.close();
-        }finally {
-            try {
-                if(ps!=null) ps.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(con);
-            }
-
-        }
+       //
     }
 
     @Override

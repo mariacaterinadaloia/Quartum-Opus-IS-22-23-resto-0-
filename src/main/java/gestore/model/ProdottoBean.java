@@ -15,10 +15,12 @@ public class ProdottoBean implements Bean {
     private double prezzo;
     private boolean acquistabile;
 
+    private String link;
     public boolean isAcquistabile() {
         return acquistabile;
     }
-
+    public String getLink(){return link;}
+    public void setLink(String link){this.link=link;}
     public void setAcquistabile(boolean acquistabile) {
         this.acquistabile = acquistabile;
     }

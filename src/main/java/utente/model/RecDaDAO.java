@@ -30,7 +30,7 @@ public class RecDaDAO implements DAO<RecDaBean> {
 
             while (rs.next()) {
                 RecDaBean b=new RecDaBean();
-                b.setUtente(rs.getString("mail"));
+                b.setUtente(rs.getString("utente"));
                 b.setRecensione(rs.getInt("recensione"));
                 ab.add(b);
             }
