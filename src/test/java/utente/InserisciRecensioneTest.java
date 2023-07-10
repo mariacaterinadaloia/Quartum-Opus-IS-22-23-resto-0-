@@ -61,9 +61,9 @@ public class InserisciRecensioneTest {
 
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Successo", argument.getValue());
+        assertEquals("Recensione inserita con successo", argument.getValue());
     }
-
+    @Test
     public void insertErrore() throws SQLException, ServletException, IOException, ParseException {
 
         String username="manuilmagnifico@hotmail.com";

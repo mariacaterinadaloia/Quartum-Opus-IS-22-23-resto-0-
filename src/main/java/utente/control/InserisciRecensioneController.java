@@ -42,6 +42,7 @@ public class InserisciRecensioneController extends HttpServlet {
             dao.doInsert(bean);
             recId = dao.doGetLatestId();
         } catch (SQLException e){
+            System.out.println("ciaoq");
             e.printStackTrace();
         }
 
@@ -50,20 +51,23 @@ public class InserisciRecensioneController extends HttpServlet {
         try{
             dao1.doInsert(bean1);
         } catch (SQLException e){
+            System.out.println("ciaoq");
             e.printStackTrace();
         }
 
         bean2.setRecensione(recId);
         bean2.setProdotto(ISBN);
-        try{
+        try{System.out.println("ciaoq");
             dao2.doInsert(bean2);
         } catch (SQLException e){
+
             e.printStackTrace();
         }
 
         out.print("Recensione inserita con successo");
         String url = "/VisualizzaOrdiniController?email=" + mail;
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        response.sendRedirect("/areaUtente.jsp");
+        /*RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+        dispatcher.forward(request, response);*/
     }
 }

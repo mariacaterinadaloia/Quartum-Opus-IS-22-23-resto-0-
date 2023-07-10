@@ -15,12 +15,12 @@ import java.util.Date;
 @WebServlet(name = "InserisciAutoreController", value = "/InserisciAutoreController")
 public class InserisciAutoreController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String codice = request.getParameter("codice");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
