@@ -54,7 +54,7 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder"><%=libro.getNome()%></h5>
                             <!-- Product price-->
-                            <%=libro.getPrezzo()%>
+                            <%=libro.getPrezzo()%>€
                         </div>
                     </div>
                     <!-- Product actions-->

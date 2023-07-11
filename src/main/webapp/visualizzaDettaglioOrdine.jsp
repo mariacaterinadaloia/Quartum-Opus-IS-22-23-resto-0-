@@ -75,7 +75,7 @@
           <td><%=prodotto.getNome() %></td>
           <td><%=prodotto.getPrezzo()%>€</td>
 
-          <td><%=prodotto.getLink()%></td>
+          <td><a class="btn btn-primary" href="<%=prodotto.getLink()%>" style="background-color: #800000; color:white">Scarica</a></td>
           <td><a class="btn btn-primary" href="./insertReview.jsp?id=<%=prodotto.getISBN()%>" style="background-color: #800000; color:white">Inserisci recensione</a></td>
         </tr>
         <%} %>

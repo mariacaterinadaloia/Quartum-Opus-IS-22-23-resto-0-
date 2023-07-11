@@ -28,6 +28,12 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
+    <style>
+        #immagine {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
@@ -55,7 +61,7 @@
             <div class="col-md-4 col-sm-6">
                 <div class="card border-0 mb-grid-gutter">
                     <a class="card-img-tiles border">
-                        <div class="main-img"><img src="https://www.illibraio.it/wp-content/uploads/2021/01/Andrea-Bajani-Il-libro-delle-case.jpg">></div>
+                        <div class="main-img"><img src="<%=bean.getCopertina()%>" id="immagine"></div>
 
                     </a>
                     <div class="card-body border mt-n1 py-4 text-center">
