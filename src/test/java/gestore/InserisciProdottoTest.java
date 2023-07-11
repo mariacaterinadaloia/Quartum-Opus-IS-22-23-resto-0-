@@ -61,7 +61,8 @@ public class InserisciProdottoTest {
         Mockito.when(request.getParameter("copertina")).thenReturn("test");
         Mockito.when(request.getParameter("casa")).thenReturn("test");
         Mockito.when(request.getParameter("prezzo")).thenReturn(String.valueOf(4.0));
-        Mockito.when(request.getParameter("codiceAutore")).thenReturn("64524");
+        Mockito.when(request.getParameter("codiceAutore")).thenReturn("934423");
+        Mockito.when(request.getParameter("link")).thenReturn("linkDownload");
         Mockito.when(response.getWriter()).thenReturn(out);
 
         servlet.doPost(request, response);
@@ -84,7 +85,8 @@ public class InserisciProdottoTest {
         Mockito.when(request.getParameter("copertina")).thenReturn(null);
         Mockito.when(request.getParameter("casa")).thenReturn("test");
         Mockito.when(request.getParameter("prezzo")).thenReturn(String.valueOf(4.0));
-        Mockito.when(request.getParameter("codiceAutore")).thenReturn("64524");
+        Mockito.when(request.getParameter("codiceAutore")).thenReturn("934423");
+        Mockito.when(request.getParameter("link")).thenReturn("linkDownload");
         Mockito.when(response.getWriter()).thenReturn(out);
 
         servlet.doPost(request, response);

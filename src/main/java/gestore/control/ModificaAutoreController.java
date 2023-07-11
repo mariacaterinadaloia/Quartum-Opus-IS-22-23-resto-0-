@@ -82,6 +82,6 @@ public class ModificaAutoreController extends HttpServlet {
             }
         }
         out.print("Successo.");
-        response.sendRedirect("/AutoriController");
+        response.sendRedirect(request.getContextPath() + "/AutoriController");
     }
 }

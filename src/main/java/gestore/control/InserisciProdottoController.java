@@ -35,6 +35,7 @@ public class InserisciProdottoController extends HttpServlet {
         String casaEditrice = request.getParameter("casa");
         double prezzo = Double.parseDouble(request.getParameter("prezzo"));
         String codiceAutore = request.getParameter("codiceAutore");
+        String link = request.getParameter("link");
 
         if(ISBN == null || nome == null || genere == null || copertina == null || casaEditrice == null || codiceAutore == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
@@ -52,6 +53,7 @@ public class InserisciProdottoController extends HttpServlet {
         bean.setCasaEditrice(casaEditrice);
         bean.setPrezzo(prezzo);
         bean.setAcquistabile(true);
+        bean.setLink(link);
 
         ProdottoDAO pdao = new ProdottoDAO();
         try{
@@ -70,6 +72,6 @@ public class InserisciProdottoController extends HttpServlet {
             e.printStackTrace();
         }
         out.print("Successo.");
-        response.sendRedirect("/CatalogoAdminController");
+        response.sendRedirect(request.getContextPath() + "/CatalogoAdminController");
     }
 }

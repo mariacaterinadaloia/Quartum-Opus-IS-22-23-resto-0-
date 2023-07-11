@@ -49,6 +49,6 @@ public class InserisciAutoreController extends HttpServlet {
             e.printStackTrace();
         }
         out.print("Successo.");
-        response.sendRedirect("/AutoriController");
+        response.sendRedirect(request.getContextPath() + "/AutoriController");
     }
 }

@@ -107,6 +107,10 @@
                 <% } %>
               </select>
             </div>
+            <div class="mb-3">
+              <label for="link" class="form-label">Link download</label>
+              <input type="text" class="form-control" id="link" name="link" required>
+            </div>
             <button type="submit" class="btn btn-primary">Inserisci</button>
           </form>
 

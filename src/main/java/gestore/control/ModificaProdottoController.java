@@ -132,8 +132,22 @@ public class ModificaProdottoController extends HttpServlet {
                 }
                 break;
             }
+            case "modifyLink":{
+                if(request.getParameter("link") == null){
+                    out.print("Errore");
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    return;
+                }
+                String link = request.getParameter("link");
+                try{
+                    dao.doModifyLink(bean, link);
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+                break;
+            }
         }
         out.print("Successo.");
-        response.sendRedirect("/CatalogoAdminController");
+        response.sendRedirect(request.getContextPath() + "/CatalogoAdminController");
     }
 }

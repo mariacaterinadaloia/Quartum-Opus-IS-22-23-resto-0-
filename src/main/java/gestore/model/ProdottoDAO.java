@@ -37,6 +37,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setPrezzo(rs.getDouble("prezzo"));
                 b.setAcquistabile(rs.getBoolean("acquistabile"));
+                b.setLink(rs.getString("link"));
                 ab.add(b);
             }
             rs.close();
@@ -76,6 +77,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setPrezzo(rs.getDouble("prezzo"));
                 b.setAcquistabile(rs.getBoolean("acquistabile"));
+                b.setLink(rs.getString("link"));
             }
             rs.close();
         }finally {
@@ -116,7 +118,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
 
     @Override
     public void doInsert(ProdottoBean prodottoBean) throws SQLException {
-        String query="Insert into "+ ProdottoDAO.TABLE_NAME+" values(?,?,?,?,?,?,?,?,?)";
+        String query="Insert into "+ ProdottoDAO.TABLE_NAME+" values(?,?,?,?,?,?,?,?,?,?)";
         Connection con=null;
         PreparedStatement ps=null;
 
@@ -133,6 +135,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
             ps.setString(7, prodottoBean.getCopertina());
             ps.setDouble(8, prodottoBean.getPrezzo());
             ps.setBoolean(9, prodottoBean.isAcquistabile());
+            ps.setString(10, prodottoBean.getLink());
 
             ps.execute();
 
@@ -317,6 +320,27 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
         }
     }
 
+    public void doModifyLink(ProdottoBean prodottoBean, String link) throws SQLException{
+        String query="update "+ ProdottoDAO.TABLE_NAME+" set link=? where ISBN=?";
+        Connection con=null;
+        PreparedStatement ps=null;
+
+        try {
+            con= DriverManagerConnectionPool.getConnection();
+
+            ps=con.prepareStatement(query);
+            ps.setLong(2, prodottoBean.getISBN());
+            ps.setString(1, link);
+            ps.execute();
+        }finally {
+            try {
+                if(ps!=null) ps.close();
+            }finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
+    }
+
     public ArrayList<ProdottoBean> doRetrieveByGenre(String genre) throws SQLException {
         Connection con=null;
         PreparedStatement ps=null;
@@ -343,6 +367,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setAcquistabile(rs.getBoolean("acquistabile"));
                 b.setPrezzo(rs.getDouble("prezzo"));
+                b.setLink(rs.getString("link"));
                 ab.add(b);
             }
             rs.close();
@@ -380,6 +405,7 @@ public class ProdottoDAO implements DAO<ProdottoBean> {
                 b.setCasaEditrice(rs.getString("casa_editrice"));
                 b.setAcquistabile(rs.getBoolean("acquistabile"));
                 b.setPrezzo(rs.getDouble("prezzo"));
+                b.setLink(rs.getString("link"));
             }
             rs.close();
         }finally {

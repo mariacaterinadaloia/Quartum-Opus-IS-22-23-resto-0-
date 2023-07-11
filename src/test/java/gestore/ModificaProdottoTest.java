@@ -280,4 +280,38 @@ public class ModificaProdottoTest {
         Mockito.verify(out).print(argument.capture());
         assertEquals("Errore", argument.getValue());
     }
+
+    @Test
+    public void modifyLinkSuccesso() throws SQLException, ServletException, IOException, ParseException {
+        PrintWriter out = Mockito.mock(PrintWriter.class);
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+
+        Mockito.when(request.getParameter("action")).thenReturn("modifyLink");
+        Mockito.when(request.getParameter("link")).thenReturn("linkDownload");
+        Mockito.when(request.getParameter("codice")).thenReturn(String.valueOf(93764321));
+        Mockito.when(response.getWriter()).thenReturn(out);
+
+        servlet.doPost(request, response);
+
+
+        Mockito.verify(out).print(argument.capture());
+        assertEquals("Successo.", argument.getValue());
+    }
+
+    @Test
+    public void modifyLinkErrore() throws SQLException, ServletException, IOException, ParseException {
+        PrintWriter out = Mockito.mock(PrintWriter.class);
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+
+        Mockito.when(request.getParameter("action")).thenReturn("modifyLink");
+        Mockito.when(request.getParameter("link")).thenReturn(null);
+        Mockito.when(request.getParameter("codice")).thenReturn(String.valueOf(93764321));
+        Mockito.when(response.getWriter()).thenReturn(out);
+
+        servlet.doPost(request, response);
+
+
+        Mockito.verify(out).print(argument.capture());
+        assertEquals("Errore", argument.getValue());
+    }
 }

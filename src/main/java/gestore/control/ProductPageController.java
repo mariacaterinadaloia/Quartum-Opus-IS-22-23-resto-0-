@@ -1,10 +1,9 @@
 package gestore.control;
 
+import gestore.model.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import gestore.model.ProdottoBean;
-import gestore.model.ProdottoDAO;
 import utente.model.*;
 
 import java.io.IOException;
@@ -20,6 +19,10 @@ public class ProductPageController extends HttpServlet {
         long ISBN = Long.parseLong(request.getParameter("ISBN"));
         ProdottoDAO dao = new ProdottoDAO();
         ProdottoBean libro = new ProdottoBean();
+        ScrittoDaDAO sdao = new ScrittoDaDAO();
+        ScrittoDaBean sbean = new ScrittoDaBean();
+        AutoreDAO adao = new AutoreDAO();
+        AutoreBean autore = new AutoreBean();
 
         RecDiDAO recDiDAO = new RecDiDAO();
         Collection<RecDiBean> recDiBeanCollection = new LinkedList<RecDiBean>();
@@ -34,6 +37,19 @@ public class ProductPageController extends HttpServlet {
         } catch (SQLException e){
             e.printStackTrace();
         }
+
+        try{
+            sbean = sdao.doRetrieveByKey(ISBN);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        try{
+            autore = adao.doRetrieveByKey(sbean.getAutore());
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
 
         try{
             recDiBeanCollection = recDiDAO.doRetrieveByProduct(ISBN);
@@ -51,6 +67,7 @@ public class ProductPageController extends HttpServlet {
 
         request.setAttribute("libro", libro);
         request.setAttribute("recensioni", recensioni);
+        request.setAttribute("autore", autore);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/productPage.jsp");
         dispatcher.forward(request, response);
     }

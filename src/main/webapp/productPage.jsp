@@ -1,7 +1,9 @@
 <%@ page import="gestore.model.ProdottoBean" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="utente.model.RecensioneBean" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="gestore.model.AutoreBean" %>
+<%@ page import="com.sun.source.doctree.AuthorTree" %><%--
   Created by IntelliJ IDEA.
   User: Francesca
   Date: 06/01/2023
@@ -12,6 +14,7 @@
 <%
   ProdottoBean libro = (ProdottoBean) request.getAttribute("libro");
   ArrayList<RecensioneBean> recensioni = (ArrayList<RecensioneBean>) request.getAttribute("recensioni");
+  AutoreBean autore = (AutoreBean) request.getAttribute("autore");
 %>
 <html>
 <head>
@@ -32,15 +35,21 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
-      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src=https://www.pixartprinting.it/blog/wp-content/uploads/2020/01/2-4.jpg alt="..." /></div>
+      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src=<%=libro.getCopertina()%> alt="..." /></div>
       <div class="col-md-6">
 
         <h1 class="display-5 fw-bolder"><%=libro.getNome()%></h1>
         <div class="fs-5 mb-5">
 
-          <span><%=libro.getPrezzo()%></span>
+          <span><%=autore.getNome()%> <%=autore.getCognome()%></span>
+          <br>
+          <span><%=libro.getPrezzo()%>€</span>
+          <br>
+          <span><%=libro.getCasaEditrice()%></span>
+          <br>
         </div>
-        <p class="lead">Prova</p>
+        <p class="lead">Edizione: <%=libro.getEdizione()%></p>
+        <p class="lead">Anno: <%=libro.getAnno()%></p>
         <div class="d-flex">
           <a class="btn btn-outline-dark flex-shrink-0" href="./CarrelloController?action=addCart&ISBN=<%=libro.getISBN()%>">
             <i class="bi-cart-fill me-1"></i>

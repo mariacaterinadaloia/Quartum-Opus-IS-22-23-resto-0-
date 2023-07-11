@@ -42,7 +42,7 @@ public class SignupController extends HttpServlet {
             if ( ! ( checkName && checkSurname  && checkPassword && checkEmail ) ){
                 out.print("Errore");
                 request.getSession().setAttribute("errorSignup", insertError);
-                response.sendRedirect("/signup.jsp");
+                response.sendRedirect(request.getContextPath() + "/signup.jsp");
                 return;
             }
         }
@@ -63,7 +63,7 @@ public class SignupController extends HttpServlet {
         if(ut.getMail() != null){
             out.print("Mail esistente.");
             request.getSession().setAttribute("errorSignup", "Email già inserita!");
-            response.sendRedirect("/signup.jsp");
+            response.sendRedirect(request.getContextPath() + "/signup.jsp");
             return;
         }
 
@@ -81,7 +81,7 @@ public class SignupController extends HttpServlet {
             e.printStackTrace();
         }
         out.print("Successo.");
-        response.sendRedirect("/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
 
     @Override

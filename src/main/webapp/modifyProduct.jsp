@@ -136,6 +136,16 @@
             <button type="submit" class="btn btn-primary">Modifica</button>
           </form>
 
+          <form id="linkForm" method="POST" action="./ModificaProdottoController">
+            <div class="mb-3">
+              <label for="link" class="form-label">Link download</label>
+              <input type="text" class="form-control" id="link" name="link" required>
+            </div>
+            <input type="hidden" name="action" value="modifyLink">
+            <input type="hidden" name="codice" value=<%=codice%>>
+            <button type="submit" class="btn btn-primary">Modifica</button>
+          </form>
+
 
         </div>
       </div>

@@ -47,6 +47,7 @@
                 Iterator i = libri.iterator();
                 while(i.hasNext()){
                     ProdottoBean bean = (ProdottoBean) i.next();
+                    if(!bean.isAcquistabile()) continue;
                     double prezzo = bean.getPrezzo();
                     DecimalFormat df = new DecimalFormat("#.00");
             %>

@@ -66,7 +66,7 @@ public class InserisciRecensioneController extends HttpServlet {
 
         out.print("Recensione inserita con successo");
         String url = "/VisualizzaOrdiniController?email=" + mail;
-        response.sendRedirect("/areaUtente.jsp");
+        response.sendRedirect(request.getContextPath() + "/areaUtente.jsp");
         /*RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);*/
     }

@@ -69,7 +69,7 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://i.imgur.com/2DsA49b.webp" class="img-fluid rounded-3"
+                                    <img src="<%=bean.getCopertina()%>" class="img-fluid rounded-3"
                                     style="width: 120px;" alt="Bottle">
 
                                 </div>
