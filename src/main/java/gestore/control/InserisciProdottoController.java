@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "InserisciProdottoController", value = "/InserisciProdottoController")
@@ -20,6 +21,7 @@ public class InserisciProdottoController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         Long ISBN = Long.parseLong(request.getParameter("isbn"));
         String nome = request.getParameter("nome");
         String genere = request.getParameter("genere");
@@ -36,6 +38,7 @@ public class InserisciProdottoController extends HttpServlet {
 
         if(ISBN == null || nome == null || genere == null || copertina == null || casaEditrice == null || codiceAutore == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+            out.print("Errore.");
             return;
         }
 
@@ -66,7 +69,7 @@ public class InserisciProdottoController extends HttpServlet {
         } catch(SQLException e){
             e.printStackTrace();
         }
-
+        out.print("Successo.");
         response.sendRedirect("/CatalogoAdminController");
     }
 }

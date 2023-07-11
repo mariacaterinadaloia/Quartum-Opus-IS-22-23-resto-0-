@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,6 +22,7 @@ public class InserisciAutoreController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         String codice = request.getParameter("codice");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
@@ -30,6 +32,7 @@ public class InserisciAutoreController extends HttpServlet {
 
         if(codice == null || nome == null || cognome == null || dataNascita == null){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+            out.print("Errore.");
             return;
         }
 
@@ -45,7 +48,7 @@ public class InserisciAutoreController extends HttpServlet {
         } catch(SQLException e){
             e.printStackTrace();
         }
-
+        out.print("Successo.");
         response.sendRedirect("/AutoriController");
     }
 }

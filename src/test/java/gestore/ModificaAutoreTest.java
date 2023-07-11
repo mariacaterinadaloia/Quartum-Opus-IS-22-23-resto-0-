@@ -44,45 +44,99 @@ public class ModificaAutoreTest {
         response=null;
     }
     @Test
-    public void modifySuccesso() throws SQLException, ServletException, IOException, ParseException {
-
-        String username="manuilmagnifico@hotmail.com";
-        String testo="Magnifique";
-        Long ISBN = 93764321L;
+    public void modifyNomeSuccesso() throws SQLException, ServletException, IOException, ParseException {
 
         PrintWriter out = Mockito.mock(PrintWriter.class);
         ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-
-        Mockito.when(request.getParameter("mail")).thenReturn(username);
-        Mockito.when(request.getParameter("testoRec")).thenReturn(testo);
-        Mockito.when(request.getParameter("ISBN")).thenReturn(String.valueOf(ISBN));
+        Mockito.when(request.getParameter("codice")).thenReturn("934723");
+        Mockito.when(request.getParameter("action")).thenReturn("modificaNome");
+        Mockito.when(request.getParameter("name")).thenReturn("nome");
         Mockito.when(response.getWriter()).thenReturn(out);
 
         servlet.doPost(request, response);
 
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Successo", argument.getValue());
+        assertEquals("Successo.", argument.getValue());
     }
     @Test
-    public void modifyErrore() throws SQLException, ServletException, IOException, ParseException {
-
-        String username="manuilmagnifico@hotmail.com";
-        String testo=null;
-        Long ISBN = 93764321L;
+    public void modifyCognomeSuccesso() throws SQLException, ServletException, IOException, ParseException {
 
         PrintWriter out = Mockito.mock(PrintWriter.class);
         ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-
-        Mockito.when(request.getParameter("mail")).thenReturn(username);
-        Mockito.when(request.getParameter("testoRec")).thenReturn(testo);
-        Mockito.when(request.getParameter("ISBN")).thenReturn(String.valueOf(ISBN));
+        Mockito.when(request.getParameter("codice")).thenReturn("934723");
+        Mockito.when(request.getParameter("action")).thenReturn("modificaCognome");
+        Mockito.when(request.getParameter("surname")).thenReturn("ali");
         Mockito.when(response.getWriter()).thenReturn(out);
 
         servlet.doPost(request, response);
 
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore nell'inserimento", argument.getValue());
+        assertEquals("Successo.", argument.getValue());
+    }
+    @Test
+    public void modifyDataSuccesso() throws SQLException, ServletException, IOException, ParseException {
+
+        PrintWriter out = Mockito.mock(PrintWriter.class);
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+        Mockito.when(request.getParameter("codice")).thenReturn("934723");
+        Mockito.when(request.getParameter("action")).thenReturn("modificaData");
+        Mockito.when(request.getParameter("birthdate")).thenReturn("2022-06-22");
+        Mockito.when(response.getWriter()).thenReturn(out);
+
+        servlet.doPost(request, response);
+
+
+        Mockito.verify(out).print(argument.capture());
+        assertEquals("Successo.", argument.getValue());
+    }
+    @Test
+    public void modifyNomeErrore() throws SQLException, ServletException, IOException, ParseException {
+
+        PrintWriter out = Mockito.mock(PrintWriter.class);
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+        Mockito.when(request.getParameter("codice")).thenReturn("934723");
+        Mockito.when(request.getParameter("action")).thenReturn("modificaNome");
+        Mockito.when(request.getParameter("name")).thenReturn(null);
+        Mockito.when(response.getWriter()).thenReturn(out);
+
+        servlet.doPost(request, response);
+
+
+        Mockito.verify(out).print(argument.capture());
+        assertEquals("Errore", argument.getValue());
+    }
+    @Test
+    public void modifyCognomeErrore() throws SQLException, ServletException, IOException, ParseException {
+
+        PrintWriter out = Mockito.mock(PrintWriter.class);
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+        Mockito.when(request.getParameter("codice")).thenReturn("934723");
+        Mockito.when(request.getParameter("action")).thenReturn("modificaCognome");
+        Mockito.when(request.getParameter("surname")).thenReturn(null);
+        Mockito.when(response.getWriter()).thenReturn(out);
+
+        servlet.doPost(request, response);
+
+
+        Mockito.verify(out).print(argument.capture());
+        assertEquals("Errore", argument.getValue());
+    }
+    @Test
+    public void modifyDataErrore() throws SQLException, ServletException, IOException, ParseException {
+
+        PrintWriter out = Mockito.mock(PrintWriter.class);
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+        Mockito.when(request.getParameter("codice")).thenReturn("934723");
+        Mockito.when(request.getParameter("action")).thenReturn("modificaData");
+        Mockito.when(request.getParameter("birthdate")).thenReturn(null);
+        Mockito.when(response.getWriter()).thenReturn(out);
+
+        servlet.doPost(request, response);
+
+
+        Mockito.verify(out).print(argument.capture());
+        assertEquals("Errore", argument.getValue());
     }
 }

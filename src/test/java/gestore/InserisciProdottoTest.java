@@ -53,36 +53,44 @@ public class InserisciProdottoTest {
         PrintWriter out = Mockito.mock(PrintWriter.class);
         ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 
-        Mockito.when(request.getParameter("mail")).thenReturn(username);
-        Mockito.when(request.getParameter("testoRec")).thenReturn(testo);
-        Mockito.when(request.getParameter("ISBN")).thenReturn(String.valueOf(ISBN));
+        Mockito.when(request.getParameter("nome")).thenReturn("usernam");
+        Mockito.when(request.getParameter("genere")).thenReturn("testo");
+        Mockito.when(request.getParameter("isbn")).thenReturn(String.valueOf(6464));
+        Mockito.when(request.getParameter("anno")).thenReturn(String.valueOf(2001));
+        Mockito.when(request.getParameter("edizione")).thenReturn(String.valueOf(1));
+        Mockito.when(request.getParameter("copertina")).thenReturn("test");
+        Mockito.when(request.getParameter("casa")).thenReturn("test");
+        Mockito.when(request.getParameter("prezzo")).thenReturn(String.valueOf(4.0));
+        Mockito.when(request.getParameter("codiceAutore")).thenReturn("64524");
         Mockito.when(response.getWriter()).thenReturn(out);
 
         servlet.doPost(request, response);
 
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Successo", argument.getValue());
+        assertEquals("Successo.", argument.getValue());
     }
     @Test
     public void insertErrore() throws SQLException, ServletException, IOException, ParseException {
 
-        String username="manuilmagnifico@hotmail.com";
-        String testo=null;
-        Long ISBN = 93764321L;
-
         PrintWriter out = Mockito.mock(PrintWriter.class);
         ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
 
-        Mockito.when(request.getParameter("mail")).thenReturn(username);
-        Mockito.when(request.getParameter("testoRec")).thenReturn(testo);
-        Mockito.when(request.getParameter("ISBN")).thenReturn(String.valueOf(ISBN));
+        Mockito.when(request.getParameter("nome")).thenReturn("usernam");
+        Mockito.when(request.getParameter("genere")).thenReturn("testo");
+        Mockito.when(request.getParameter("isbn")).thenReturn(String.valueOf(6464));
+        Mockito.when(request.getParameter("anno")).thenReturn(String.valueOf(2001));
+        Mockito.when(request.getParameter("edizione")).thenReturn(String.valueOf(1));
+        Mockito.when(request.getParameter("copertina")).thenReturn(null);
+        Mockito.when(request.getParameter("casa")).thenReturn("test");
+        Mockito.when(request.getParameter("prezzo")).thenReturn(String.valueOf(4.0));
+        Mockito.when(request.getParameter("codiceAutore")).thenReturn("64524");
         Mockito.when(response.getWriter()).thenReturn(out);
 
         servlet.doPost(request, response);
 
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore nell'inserimento", argument.getValue());
+        assertEquals("Errore.", argument.getValue());
     }
 }

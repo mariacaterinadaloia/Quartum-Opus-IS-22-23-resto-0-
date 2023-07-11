@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,6 +22,7 @@ public class ModificaAutoreController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
         String codice = request.getParameter("codice");
         AutoreDAO dao = new AutoreDAO();
@@ -36,6 +38,7 @@ public class ModificaAutoreController extends HttpServlet {
             case "modificaNome": {
                 String nome = request.getParameter("name");
                 if(nome == null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -49,6 +52,7 @@ public class ModificaAutoreController extends HttpServlet {
             case "modificaCognome": {
                 String cognome = request.getParameter("surname");
                 if(cognome == null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -62,6 +66,7 @@ public class ModificaAutoreController extends HttpServlet {
             case "modificaData": {
                 String d = request.getParameter("birthdate");
                 if(d==null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -76,7 +81,7 @@ public class ModificaAutoreController extends HttpServlet {
                 break;
             }
         }
-
+        out.print("Successo.");
         response.sendRedirect("/AutoriController");
     }
 }

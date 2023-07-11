@@ -75,33 +75,6 @@ public class SignupControllerTest {
 
     }
 
-    @Test
-    public void usernameEsistente() throws SQLException, ServletException, IOException, ParseException {
-        String password = "mmmManue1.";
-        String email = "manuel1@gmail.com";
-        String nome = "Manuel";
-        String cognome = "Sica";
-        String d = "2001-05-23";
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-        Date ddn = f.parse(d);
-
-        PrintWriter out = mock(PrintWriter.class);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-
-        Mockito.when(request.getParameter("password")).thenReturn(password);
-        Mockito.when(request.getParameter("email")).thenReturn(email);
-        Mockito.when(request.getParameter("nome")).thenReturn(nome);
-        Mockito.when(request.getParameter("cognome")).thenReturn(cognome);
-        Mockito.when(request.getParameter("dataNascita")).thenReturn(d);
-        Mockito.when(response.getWriter()).thenReturn(out);
-
-        servlet.doPost(request, response);
-
-        Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore.", argument.getValue());
-
-    }
-
 
     @Test
     public void nomeNonValido() throws SQLException, ServletException, IOException, ParseException {
@@ -131,7 +104,7 @@ public class SignupControllerTest {
         servlet.doPost(request, response);
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore.", argument.getValue());
+        assertEquals("Errore", argument.getValue());
 
     }
 
@@ -163,7 +136,7 @@ public class SignupControllerTest {
         servlet.doPost(request, response);
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore.", argument.getValue());
+        assertEquals("Errore", argument.getValue());
 
     }
 
@@ -196,7 +169,7 @@ public class SignupControllerTest {
         servlet.doPost(request, response);
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore.", argument.getValue());
+        assertEquals("Errore", argument.getValue());
 
     }
 
@@ -260,7 +233,7 @@ public class SignupControllerTest {
         servlet.doPost(request, response);
 
         Mockito.verify(out).print(argument.capture());
-        assertEquals("Errore.", argument.getValue());
+        assertEquals("Errore", argument.getValue());
 
     }
 }

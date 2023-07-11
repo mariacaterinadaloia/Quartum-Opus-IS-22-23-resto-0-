@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "ModificaProdottoController", value = "/ModificaProdottoController")
@@ -20,6 +21,7 @@ public class ModificaProdottoController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
         Long codice = Long.parseLong(request.getParameter("codice"));
         ProdottoDAO dao = new ProdottoDAO();
@@ -36,6 +38,7 @@ public class ModificaProdottoController extends HttpServlet {
                 String nome = request.getParameter("nome");
                 if(nome == null){
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    out.print("Errore");
                     return;
                 }
                 try{
@@ -48,6 +51,7 @@ public class ModificaProdottoController extends HttpServlet {
             case "modifyGenere":{
                 String genere = request.getParameter("genere");
                 if(genere==null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -61,6 +65,7 @@ public class ModificaProdottoController extends HttpServlet {
             case "modifyAnno":{
                 if(request.getParameter("anno") == null){
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
+                    out.print("Errore");
                     return;
                 }
                 int anno = Integer.parseInt(request.getParameter("anno"));
@@ -73,6 +78,7 @@ public class ModificaProdottoController extends HttpServlet {
             }
             case "modifyEdizione":{
                 if(request.getParameter("edizione") == null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -87,6 +93,7 @@ public class ModificaProdottoController extends HttpServlet {
             case "modifyCasa":{
                 String casa = request.getParameter("casa");
                 if(casa == null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -100,6 +107,7 @@ public class ModificaProdottoController extends HttpServlet {
             case "modifyCopertina":{
                 String copertina = request.getParameter("copertina");
                 if(copertina == null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -112,6 +120,7 @@ public class ModificaProdottoController extends HttpServlet {
             }
             case "modifyPrezzo":{
                 if(request.getParameter("prezzo") == null){
+                    out.print("Errore");
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato errato!");
                     return;
                 }
@@ -124,7 +133,7 @@ public class ModificaProdottoController extends HttpServlet {
                 break;
             }
         }
-
+        out.print("Successo.");
         response.sendRedirect("/CatalogoAdminController");
     }
 }
